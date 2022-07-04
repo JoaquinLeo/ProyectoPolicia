@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    error_reporting(0);
+    $varsession = $_SESSION['usuario'];
+    if($varsession == null || $varsession == ""){
+        echo "usted no tiene autorizacion";
+        die();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +23,7 @@
         <ul>
             <li><a href="#">Contacto</a></li>
             <li><a href="ingresantes.php">Ingresantes</a></li>
-            <li><a href="../index.php">Cerrar Sesion</li>
+            <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
         </ul>
     </nav>
 </body>

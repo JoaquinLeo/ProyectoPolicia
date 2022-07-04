@@ -1,4 +1,6 @@
 <?php
+    
+
     $registrar ="";
     $ingresar ="";
 
@@ -7,9 +9,12 @@
 
     
     if($ingresar){
+        
+        
         $usuario=$_REQUEST['usuario'];
         $contrasenna=$_REQUEST['contrasenna'];
-
+        session_start();
+        $_SESSION['usuario']=$usuario;
         $conexion=mysqli_connect("localhost","root","","dbPolicia") or
         die("Problemas con la conexión");
 
@@ -27,12 +32,12 @@
             die("Problemas en el select:".mysqli_error($conexion));
             $reg=mysqli_fetch_array($resultado2);
             if($reg['nivel_usuario'] == "admin"){
+                
                 header("location:./administradores/index.php");
             }
             else{
                 header("location:./usuarios/index.php");
             }
-            //header("location:iniciar.php");
         }
         else
         {

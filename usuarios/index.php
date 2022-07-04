@@ -1,8 +1,10 @@
 <?php
-    $volver="";
-    if(isset($_REQUEST['volver']))$volver=$_REQUEST['volver'];
-    if($volver){
-        header("location:../index.php");
+    session_start(); 
+    error_reporting(0);
+    $varsession = $_SESSION['usuario'];
+    if($varsession == null || $varsession == ""){
+        echo "usted no tiene autorizacion";
+        die();
     }
 ?>
 <!DOCTYPE html>
@@ -21,8 +23,7 @@
             <option value="movil">Movil</option>
             <option value="caminante">Caminante</option>
         </select>
-        <br><input type="submit" value="Volver" name="volver">
     </form>
-
+         <a href="../cerrar_session.php">Cerrar Sesion<a></a>
 </body>
 </html>
