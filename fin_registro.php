@@ -12,18 +12,20 @@
 
         <?php
         $enviar ="";
-        $volver ="";
         if(isset($_REQUEST['enviar']))$enviar=$_REQUEST['enviar'];
-        if(isset($_REQUEST['volver']))$volver=$_REQUEST['volver'];
+
 
         if($enviar){
-        $conexion = mysqli_connect("localhost","root","","dbPolicia")or
-        die("Problemas con la conexión");
-        mysqli_query($conexion,"insert into policias(nombre,apellido,legajo,nivel_usuario,estado) values 
-        ('$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[legajo]','$_REQUEST[nivel_usuario]','espera')")
+        include("conexion.php");
+        $sql="INSERT into policias(nombre,apellido,legajo,nivel_usuario,estado) values 
+        ('$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[legajo]','$_REQUEST[nivel_usuario]','espera')";
+        
+        mysqli_query($conexion,$sql)
         or die("Problemas en el select".mysqli_error($conexion));
         mysqli_close($conexion);
-        ?>
+        echo "Muchas gracias! Espere confirmación.";
+        
+        /*?>
         <p>
             Muchas gracias! Espere confirmación.<br>
             <form method="post" action="fin_registro.php">
@@ -31,18 +33,17 @@
             </form>
 
         </p>
-        <?php
+        <?php*/
         }
-        if($volver){
-           header("location:index.php");
-        }
-        $inicio="";
+
+        /*$inicio="";
         if(isset($_REQUEST['inicio']))$inicio=$_REQUEST['inicio'];
         if($inicio){
             header("location:index.php");
         }
+        ?>*/
         ?>
-
+        <br><a href="index.php">Cerrar Sesion</a>
     </div>
 </body>
 </html>

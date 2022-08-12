@@ -1,11 +1,5 @@
 <?php
-    session_start(); 
-    error_reporting(0);
-    $varsession = $_SESSION['usuario'];
-    if($varsession == null || $varsession == ""){
-        echo "usted no tiene autorizacion";
-        die();
-    }
+    include("../sesion.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +19,6 @@
         </select>
         <br><input type="submit" value="seleccionar" name="selecionar"><br><br>
     </form>
-         <a href="../cerrar_session.php">Cerrar Sesion<a></a>
+         <a href="../cerrar_session.php">Cerrar Sesion</a>
 </body>
 </html>

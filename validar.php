@@ -10,13 +10,14 @@
     
     if($ingresar){
         
+        include("conexion.php");
         
         $usuario=$_REQUEST['usuario'];
         $contrasenna=$_REQUEST['contrasenna'];
         session_start();
         $_SESSION['usuario']=$usuario;
-        $conexion=mysqli_connect("localhost","root","","dbPolicia") or
-        die("Problemas con la conexión");
+        
+        
 
         $consulta="SELECT nombre , legajo , estado FROM policias where nombre='$usuario' and legajo='$contrasenna' and estado='aceptado'";
 

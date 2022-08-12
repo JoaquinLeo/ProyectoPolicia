@@ -22,12 +22,11 @@
         <input type="submit" value="Ingresar" name="ingresar">
     </form>
    
-        </form>
         <script>
             function registrar(){
                 location.href = "registrar.php";
             }
-    </script>
+        </script>
     
     </div>
 </body>
