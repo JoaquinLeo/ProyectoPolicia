@@ -19,7 +19,7 @@
         if($enviar){
         $conexion = mysqli_connect("localhost","root","","dbPolicia")or
         die("Problemas con la conexión");
-        mysqli_query($conexion,"insert into policia(nombre,apellido,legajo,nivel_usuario,estado) values 
+        mysqli_query($conexion,"insert into policias(nombre,apellido,legajo,nivel_usuario,estado) values 
         ('$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[legajo]','$_REQUEST[nivel_usuario]','espera')")
         or die("Problemas en el select".mysqli_error($conexion));
         mysqli_close($conexion);

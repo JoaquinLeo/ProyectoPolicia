@@ -18,7 +18,7 @@
         $conexion=mysqli_connect("localhost","root","","dbPolicia") or
         die("Problemas con la conexión");
 
-        $consulta="SELECT nombre , legajo , estado FROM policia where nombre='$usuario' and legajo='$contrasenna' and estado='aceptado'";
+        $consulta="SELECT nombre , legajo , estado FROM policias where nombre='$usuario' and legajo='$contrasenna' and estado='aceptado'";
 
         $resultado= mysqli_query($conexion,$consulta) or
         die("Problemas en el select:".mysqli_error($conexion));
@@ -27,7 +27,7 @@
 
         if($filas)
         {   
-            $consulta2="SELECT nivel_usuario FROM policia where nombre='$usuario' and legajo='$contrasenna' and estado='aceptado'";
+            $consulta2="SELECT nivel_usuario FROM policias where nombre='$usuario' and legajo='$contrasenna' and estado='aceptado'";
             $resultado2= mysqli_query($conexion,$consulta2) or
             die("Problemas en el select:".mysqli_error($conexion));
             $reg=mysqli_fetch_array($resultado2);
