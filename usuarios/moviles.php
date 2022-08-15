@@ -14,7 +14,7 @@
     <title>Moviles</title>
 </head>
 <body>
-    <form action="presentismo.php" method="POST">
+    
         <table border="1">
         <caption>Moviles Policiales</caption>
             <tr>
@@ -23,12 +23,14 @@
                 <td>Tipo de Movil</td> 
                 <td>Estado</td> 
                 <td>Posesion</td> 
+                <td>Funcion</td> 
                 <td>Opciones</td> 
             </tr>
             <?php  
                 while($mostrar = mysqli_fetch_row($rta)){
                     if($mostrar['4']==0)$mostrar['4']="no";
                     else $mostrar['4']="si";
+                    $contador=1;
             ?>
             <tr>
                 <td><?php echo $mostrar['0']?></td>
@@ -36,22 +38,38 @@
                 <td><?php echo $mostrar['2']?></td>
                 <td><?php echo $mostrar['3']?></td>
                 <td><?php echo $mostrar['4']?></td>
-                <td>
-                    <?php
-                        if($mostrar['4']=="no"){
-                    ?>  
-                        <input type="submit" value="seleccionar" name="selecionar">
-                    <?php
-                        }
-                        else echo "ocupado"; 
-                        ?>          
-                </td>   
+                
+                    <form action="presentismo.php" method="POST">
+
+                        <td>
+                            <select name="funcion">
+                                <option value="chofer">Chofer</option>
+                                <option value="acompañante">Acompañante</option>
+                            </select> 
+                        </td> 
+
+                        <td>
+                            <?php
+                                if($mostrar['4']=="no"){
+                            ?>  
+                                <input type="hidden" name="movil"  value="<?= $mostrar['0'] ?>">
+                                <input type="submit" value="seleccionar" name="seleccionar">
+                            <?php
+                                }
+                                else echo "ocupado"; 
+                            ?>
+                        </td>   
+
+                    </form>        
+                
             </tr>
+            
             <?php
+                
                 }
             ?>
         </table>
-    </form>
+    
     
 </body>
 </html>

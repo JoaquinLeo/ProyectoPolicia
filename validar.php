@@ -14,8 +14,8 @@
         
         $usuario=$_REQUEST['usuario'];
         $contrasenna=$_REQUEST['contrasenna'];
-        session_start();
-        $_SESSION['usuario']=$usuario;
+        /*session_start();
+        $_SESSION['usuario']=$usuario;*/
         
         
 
@@ -35,9 +35,15 @@
             if($reg['nivel_usuario'] == "admin"){
                 
                 header("location:./administradores/index.php");
+                 session_start();
+                 $_SESSION['usuario']=$usuario;
+                 $_SESSION['legajo']=$contrasenna;
             }
             else{
                 header("location:./usuarios/index.php");
+                session_start();
+                 $_SESSION['usuario']=$usuario;
+                 $_SESSION['legajo']=$contrasenna;
             }
         }
         else
