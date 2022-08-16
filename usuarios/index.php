@@ -10,6 +10,16 @@
     <title>Document</title>
 </head>
 <body>
+
+    <nav>
+          <ul>
+              <li><a href="enfermedad.php">Enfermedad</a></li>
+              <li><a href="contacto.html">Vacaciones</a></li>
+              <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
+          </ul>
+    </nav>
+
+
     <h1>Sistema de Gestión Electrónico Policia BA</h1>
     <form action="funcion.php" method="POST">
         Seleccionar funcion: 
@@ -19,6 +29,6 @@
         </select>
         <br><input type="submit" value="seleccionar" name="selecionar"><br><br>
     </form>
-         <a href="../cerrar_session.php">Cerrar Sesion</a>
+         
 </body>
 </html>
