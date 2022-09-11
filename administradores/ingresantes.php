@@ -1,12 +1,54 @@
 <?php
-    session_start();
-    error_reporting(0);
-    $varsession = $_SESSION['usuario'];
-    if($varsession == null || $varsession == ""){
-        echo "usted no tiene autorizacion";
-        die();
+    include("../sesion.php");
+    include("../conexion.php");
+
+    $sql="SELECT * FROM policias";
+    
+    $rta= mysqli_query($conexion,$sql) or
+    die("Problemas en el select:".mysqli_error($conexion));
+
+    // CONDICION TERNARIA    ESTA ES LA CONDICION       SE CUMPLE           NO SE CUMPLE       
+    $opcion =             (isset($_REQUEST['opcion']))?$_REQUEST['opcion']  :     "";
+    $id = (isset($_REQUEST['id']))?$_REQUEST['id'] : "";
+
+    switch($opcion){
+
+        case "Aceptar" : 
+
+            $sql2 = "UPDATE policias SET estado='aceptado' WHERE policia_id='$id'";
+            if(mysqli_query($conexion,$sql2)) {
+                header("Location:ingresantes.php");
+            }
+            else{
+                echo "Error".$sql2."<br/>".mysqli_error($conexion);
+            }
+            break;
+
+        case "Rechazar" : 
+
+            $sql2 = "UPDATE policias SET estado='rechazado' WHERE policia_id='$id'";
+            if(mysqli_query($conexion,$sql2)) {
+                header("Location:ingresantes.php");
+            }
+            else{
+                echo "Error".$sql2."<br/>".mysqli_error($conexion);
+            }
+            break;
+
+        case "Borrar" : 
+
+            $sql2 = "DELETE FROM policias WHERE policia_id='$id'";
+            if(mysqli_query($conexion,$sql2)) {
+                header("Location:ingresantes.php");
+            }
+            else{
+                echo "Error".$sql2."<br/>".mysqli_error($conexion);
+            }
+            break;
     }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,39 +58,55 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>
-        Bienvenido a la pagina de administradores
-    </h1>
+
     <nav>
         <ul>
             <li><a href="index.php">Control</a></li>
             <li><a href="#">Ingresantes</a></li>
-            <li><a href="../index.php">Cerrar Sesion</a></li>
+            <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
         </ul>
     </nav>
+
+    <h1>
+        Seccion de ingresantes
+    </h1>
+
+ 
+    <table border="1">
+        <caption>Ingresantes</caption>
+        <tr>
+            <td>Nombre</td> 
+            <td>Apellido</td> 
+            <td>Legajo</td> 
+            <td>Nivel de usuario</td> 
+            <td>Estado</td>
+            <td>Opcion</td>
+
+        </tr>
     <?php
-        
-            $conexion=mysqli_connect("localhost","root","","dbPolicia") or
-            die("Problemas con la conexión");
-    
-            $consulta="SELECT * FROM policia";
-    
-            $resultado= mysqli_query($conexion,$consulta) or
-            die("Problemas en el select:".mysqli_error($conexion));
-            
-            while ($reg=mysqli_fetch_array($resultado))
-            {
-            echo "Nombre:".$reg['nombre']."&nbsp &nbsp &nbsp";
-            echo "Apellido:".$reg['apellido']."&nbsp &nbsp &nbsp";
-            echo "Legajo:".$reg['legajo']."&nbsp &nbsp &nbsp";
-            echo "Nivel de usuario:".$reg['nivel_usuario']."&nbsp &nbsp &nbsp";
-            echo "Estado:".$reg['estado']."&nbsp &nbsp &nbsp";
-            
-            echo "<br>";
-            echo "<hr>";
-            }
-    
-            
+        while ($mostrar = mysqli_fetch_array($rta))
+        {
     ?>
+        <tr>
+            <td> <?php echo $mostrar['nombre'] ?> </td> 
+            <td> <?php echo $mostrar['apellido'] ?> </td> 
+            <td> <?php echo $mostrar['legajo'] ?> </td> 
+            <td> <?php echo $mostrar['nivel_usuario'] ?> </td> 
+            <td> <?php echo $mostrar['estado'] ?> </td> 
+            <td>
+                <form method="POST">
+                    <input type="hidden" name="id"  value="<?= $mostrar['policia_id'] ?>">
+                    <input type="submit" name="opcion" value="Aceptar">
+                    <input type="submit" name="opcion" value="Rechazar">
+                    <input type="submit" name="opcion" value="Borrar">
+                </form>     
+            </td>
+        </tr>
+    <?php    
+        }
+    ?>
+
+    </table>
+            
 </body>
 </html>

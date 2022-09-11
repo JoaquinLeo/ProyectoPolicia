@@ -10,14 +10,21 @@
     <title>Enfermedad</title>
 </head>
 <body>
+
+    <nav>   
+          <ul>
+              <li><a href="enfermedad.php">Enfermedad</a></li>
+              <li><a href="vacaciones.php">Vacaciones</a></li>
+              <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
+          </ul>
+    </nav>
     
     <form action="val_enf.php" method="POST" enctype="multipart/form-data">
         Ingrese su Usuario:
-        <input type="text" name="usuario" value="<?= $_SESSION['usuario']?>" placeholder="nombre" required><br>
+        <input type="text" name="usuario" value="<?= $_SESSION['usuario']?>" readonly ><br>
         Ingrese su certificado:
         <input type="file" name="certificado" required><br>
         <input type="submit" value="Enviar" name="enviar"><br>
-
     </form>
 
 </body>

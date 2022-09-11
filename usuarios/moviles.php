@@ -3,7 +3,8 @@
     include("../conexion.php");
 
     $sql = "SELECT movil_id,nro_serie,tipo_movil,estado,posesion FROM moviles order by movil_id asc";
-    $rta = mysqli_query($conexion,$sql);
+    $rta = mysqli_query($conexion,$sql) or 
+    die("Problemas en el select:".mysqli_error($conexion));
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,20 +1,17 @@
 <?php
+    
     include("../sesion.php");
     include("../conexion.php");
 
-    
     $id = $_SESSION['id'];
 
     $nombre = $_REQUEST['usuario'];
-    $legajo = $_SESSION['legajo'];
-    $imagen = addslashes(file_get_contents($_FILES['certificado']['tmp_name']));
+    $finicio = $_REQUEST['finicio'];
+    $ffin = $_REQUEST['ffin'];
+    $estado = 'espera';
 
-    date_default_timezone_set('America/Argentina/Buenos_Aires');
-    $fecha = date("Y-m-d H:i:s");
-
+    $sql = "INSERT INTO vacaciones (policia_id,fecha_inicio,fecha_fin,estado) values ('$id','$finicio','$ffin','$estado')";
     
-    $sql = "INSERT INTO enfermedad (policia_id,fecha,certificado) values ('$id','$fecha','$imagen')";
-
     $querry= mysqli_query($conexion,$sql) or
     die("Problemas en el select:".mysqli_error($conexion));
 
@@ -24,4 +21,9 @@
     else{
         echo "No se insertó correctamente";
     }
+
+
+
+
+
 ?>

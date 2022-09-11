@@ -16,15 +16,18 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>
-        Bienvenido a la pagina de administradores
-    </h1>
+
     <nav>
         <ul>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Control</a></li>
             <li><a href="ingresantes.php">Ingresantes</a></li>
             <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
         </ul>
     </nav>
+
+    <h1>
+        Bienvenido a la pagina de administradores
+    </h1>
+
 </body>
 </html>

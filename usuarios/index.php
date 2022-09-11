@@ -14,7 +14,7 @@
     <nav>
           <ul>
               <li><a href="enfermedad.php">Enfermedad</a></li>
-              <li><a href="contacto.html">Vacaciones</a></li>
+              <li><a href="vacaciones.php">Vacaciones</a></li>
               <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
           </ul>
     </nav>
