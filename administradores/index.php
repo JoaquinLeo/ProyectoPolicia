@@ -1,11 +1,5 @@
 <?php
-    session_start();
-    error_reporting(0);
-    $varsession = $_SESSION['usuario'];
-    if($varsession == null || $varsession == ""){
-        echo "usted no tiene autorizacion";
-        die();
-    }
+    include("../sesion.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +15,8 @@
         <ul>
             <li><a href="#">Control</a></li>
             <li><a href="ingresantes.php">Ingresantes</a></li>
+            <li><a href="vacaciones.php">Vacaciones</a></li>
+            <li><a href="enfermedades.php">Enfermedades</a></li>
             <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
         </ul>
     </nav>
