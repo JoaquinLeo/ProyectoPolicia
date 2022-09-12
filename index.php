@@ -16,15 +16,15 @@
             <form action="validar.php" method="post">
                 <h1 class="h3 mb-3 fw-normal">Sistema de Gestión Electrónico Policia BA</h1>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="Usuario" required>
+                    <input type="text" name="usuario" class="form-control" id="floatingInput" placeholder="Usuario" required>
                     <label for="floatingInput">Usuario</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Legajo" required>
+                    <input type="password" name="contrasenna" class="form-control" id="floatingPassword" placeholder="Legajo" required>
                     <label for="floatingPassword">Legajo</label>
                 </div>
-                <button class="btn btn-primary btn-lg" type="button" onclick='registrar()'>Registrar</button>
-                <button class="btn btn-primary btn-lg" type="submit">Ingresar</button>
+                <button class="btn btn-primary boton" type="button" value="Registrar" onclick='registrar()'>Registrar</button>
+                <button class="btn btn-primary boton" type="submit" value="Ingresar" name="ingresar">Ingresar</button>
             </form>
         </main>
         <script>
