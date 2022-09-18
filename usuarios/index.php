@@ -1,5 +1,6 @@
 <?php
     include("../sesion.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +14,7 @@
 
     <nav>
           <ul>
+              <li><a href="index.php">Presentismo</a></li> 
               <li><a href="enfermedad.php">Enfermedad</a></li>
               <li><a href="vacaciones.php">Vacaciones</a></li>
               <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
@@ -21,11 +23,17 @@
 
 
     <h1>Sistema de Gestión Electrónico Policia BA</h1>
-    <form action="funcion.php" method="POST">
+
+    <p>Bienvenido <?php echo $_SESSION['usuario'] ?></p>
+
+    <form method="POST" action="funcion.php">
         Seleccionar funcion: 
-        <select name="nivel_usuario">
+        <select name="funcion">
             <option value="movil">Movil</option>
             <option value="caminante">Caminante</option>
+            <option value="bicicleta">Bicicleta</option>
+            <option value="cuatriciclo">Cuatriciclo</option>
+            <option value="camioneta">Camioneta</option>
         </select>
         <br><input type="submit" value="seleccionar" name="selecionar"><br><br>
     </form>

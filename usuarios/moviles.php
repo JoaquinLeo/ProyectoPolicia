@@ -2,9 +2,14 @@
     include("../sesion.php");
     include("../conexion.php");
 
-    $sql = "SELECT movil_id,nro_serie,tipo_movil,estado,posesion FROM moviles order by movil_id asc";
+
+
+    $sql = "SELECT movil_id,nro_serie,tipo_movil,estado,posesion FROM moviles
+    where   estado <> 'radiado' order by movil_id asc";
+
     $rta = mysqli_query($conexion,$sql) or 
     die("Problemas en el select:".mysqli_error($conexion));
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +21,15 @@
 </head>
 <body>
     
+        <ul>
+            <li><a href="index.php">Presentismo</a></li>    
+            <li><a href="enfermedad.php">Enfermedad</a></li>
+            <li><a href="vacaciones.php">Vacaciones</a></li>
+            <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
+        </ul>
+
+        <h1>Sistema de Gestión Electrónico Policia BA</h1>
+
         <table border="1">
         <caption>Moviles Policiales</caption>
             <tr>
@@ -28,17 +42,17 @@
                 <td>Opciones</td> 
             </tr>
             <?php  
-                while($mostrar = mysqli_fetch_row($rta)){
-                    if($mostrar['4']==0)$mostrar['4']="no";
-                    else $mostrar['4']="si";
+                while($mostrar = mysqli_fetch_array($rta)){
+                    if($mostrar['posesion']==0)$mostrar['posesion']="no";
+                    else $mostrar['posesion']="si";
                     $contador=1;
             ?>
             <tr>
-                <td><?php echo $mostrar['0']?></td>
-                <td><?php echo $mostrar['1']?></td>
-                <td><?php echo $mostrar['2']?></td>
-                <td><?php echo $mostrar['3']?></td>
-                <td><?php echo $mostrar['4']?></td>
+                <td><?php echo $mostrar['movil_id']?></td>
+                <td><?php echo $mostrar['nro_serie']?></td>
+                <td><?php echo $mostrar['tipo_movil']?></td>
+                <td><?php echo $mostrar['estado']?></td>
+                <td><?php echo $mostrar['posesion']?></td>
                 
                     <form action="presentismo.php" method="POST">
 
@@ -51,9 +65,10 @@
 
                         <td>
                             <?php
-                                if($mostrar['4']=="no"){
+                                if($mostrar['posesion']=="no"){
                             ?>  
-                                <input type="hidden" name="movil"  value="<?= $mostrar['0'] ?>">
+                                <input type="hidden" name="estado"  value="<?= $mostrar['estado'] ?>">
+                                <input type="hidden" name="movil"  value="<?= $mostrar['movil_id'] ?>">
                                 <input type="submit" value="seleccionar" name="seleccionar">
                             <?php
                                 }

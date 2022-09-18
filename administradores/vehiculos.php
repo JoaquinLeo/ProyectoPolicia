@@ -2,12 +2,12 @@
     include("../sesion.php");
     include("../conexion.php");
 
-    $sql="SELECT vacaciones.vacaciones_id, policias.nombre , policias.apellido , policias.legajo, 
-    vacaciones.fecha_inicio, vacaciones.fecha_fin , vacaciones.estado 
-    FROM vacaciones INNER JOIN policias on vacaciones.policia_id = policias.policia_id";
+    $sql="SELECT movil_id , nro_serie ,tipo_movil , estado , posesion FROM moviles WHERE estado <>'borrado' ";
     
     $rta= mysqli_query($conexion,$sql) or
     die("Problemas en el select:".mysqli_error($conexion));
+
+    $numero=1;
 
     // CONDICION TERNARIA    ESTA ES LA CONDICION       SE CUMPLE           NO SE CUMPLE       
     $opcion =             (isset($_REQUEST['opcion']))?$_REQUEST['opcion']  :     "";
@@ -15,11 +15,14 @@
 
     switch($opcion){
 
-        case "Aceptar" : 
+        case "Borrar" : 
 
-            $sql2 = "UPDATE vacaciones SET estado='aceptado' WHERE vacaciones_id='$id'";
+            date_default_timezone_set('America/Argentina/Buenos_Aires');
+            $fecha = date("Y-m-d H:i:s");
+
+            $sql2 = "UPDATE moviles SET estado='borrado' , fecha_borrado='$fecha' WHERE movil_id='$id'";
             if(mysqli_query($conexion,$sql2)) {
-                header("Location:vacaciones.php");
+                header("Location:vehiculos.php");
             }
             else{
                 echo "Error".$sql2."<br/>".mysqli_error($conexion);
@@ -59,7 +62,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>  
+<body>
 
     <nav>
         <ul>
@@ -75,14 +78,13 @@
     <h1>Sistema de Gestión Electrónico Policia BA</h1>
 
     <table border="1">
-        <caption>Vacaciones</caption>
+        <caption>Moviles</caption>
         <tr>
-            <td>Nombre</td> 
-            <td>Apellido</td> 
-            <td>Legajo</td> 
-            <td>Fecha de Inicio</td> 
-            <td>Fecha de Fin</td> 
-            <td>Estado</td>
+            <td>Numero</td> 
+            <td>Numero de Serie</td> 
+            <td>Tipo de Movil</td> 
+            <td>Estado</td> 
+            <td>Posesion</td> 
             <td>Opciones</td>
         </tr>
     <?php
@@ -90,22 +92,21 @@
         {
     ?>
         <tr>
-            <td> <?php echo $mostrar['nombre'] ?> </td> 
-            <td> <?php echo $mostrar['apellido'] ?> </td> 
-            <td> <?php echo $mostrar['legajo'] ?> </td> 
-            <td> <?php echo $mostrar['fecha_inicio'] ?> </td> 
-            <td> <?php echo $mostrar['fecha_fin'] ?> </td> 
+            <td> <?php echo $numero ?> </td> 
+            <td> <?php echo $mostrar['nro_serie'] ?> </td> 
+            <td> <?php echo $mostrar['tipo_movil'] ?> </td> 
             <td> <?php echo $mostrar['estado'] ?> </td> 
+            <td> <?php echo $mostrar['posesion'] ?> </td> 
             <td>
                 <form method="POST">
-                    <input type="hidden" name="id"  value="<?= $mostrar['vacaciones_id'] ?>">
-                    <input type="submit" name="opcion" value="Aceptar">
-                    <input type="submit" name="opcion" value="Rechazar">
+                    <input type="hidden" name="id"  value="<?= $mostrar['movil_id'] ?>">
+                    <input type="submit" name="opcion" value="Editar">
                     <input type="submit" name="opcion" value="Borrar">
                 </form>     
             </td>
         </tr>
     <?php    
+        $numero++;
         }
     ?>
 

@@ -1,0 +1,29 @@
+Corto plazo
+
+1. Registro. Sacar Admin/No admin, los admins lo cambian dentro
+
+2. Bicis , cuatris , misma tabla . Dudas
+
+3. No radiados en el presentismo . LISTO
+
+4. Mostrar previsualizacion de la imagen y una descripcion
+
+5. Mostrar mas grandes las imagenes
+
+6. Bienvenido tal usuario . Listo
+
+7. Controlar coches
+
+8. agregar y mostrar presentismo 
+
+Largo plazo
+
+1. finalizar servicio en la pagina de entrada
+
+2. chofer + acompañante = ocupado
+
+3. controlar ejor las vacaciones, x años de exp son X dias de vacaciones
+
+SUPER ADMIN
+
+1. Dar vacaciones

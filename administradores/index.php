@@ -13,17 +13,18 @@
 
     <nav>
         <ul>
-            <li><a href="#">Control</a></li>
+            <li><a href="index.php">Control</a></li>
             <li><a href="ingresantes.php">Ingresantes</a></li>
             <li><a href="vacaciones.php">Vacaciones</a></li>
             <li><a href="enfermedades.php">Enfermedades</a></li>
+            <li><a href="vehiculos.php">Vehiculos</a></li>
             <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
         </ul>
     </nav>
 
-    <h1>
-        Bienvenido a la pagina de administradores
-    </h1>
+    <h1>Sistema de Gestión Electrónico Policia BA</h1>
+
+    <p>Bienvenido <?php echo $_SESSION['usuario'] ?></p>
 
 </body>
 </html>

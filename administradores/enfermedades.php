@@ -20,19 +20,19 @@
     <title>Document</title>
 </head>
 <body>
+
     <nav>
         <ul>
-            <li><a href="#">Control</a></li>
+            <li><a href="index.php">Control</a></li>
             <li><a href="ingresantes.php">Ingresantes</a></li>
             <li><a href="vacaciones.php">Vacaciones</a></li>
             <li><a href="enfermedades.php">Enfermedades</a></li>
+            <li><a href="vehiculos.php">Vehiculos</a></li>
             <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
         </ul>
     </nav>
 
-    <h1>
-        Seccion de enfermedades
-    </h1>
+    <h1>Sistema de Gestión Electrónico Policia BA</h1>
 
     <table border="1">
         <caption>Vacaciones</caption>

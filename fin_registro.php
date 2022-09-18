@@ -11,39 +11,24 @@
     <div>
 
         <?php
-        $enviar ="";
-        if(isset($_REQUEST['enviar']))$enviar=$_REQUEST['enviar'];
+        $enviar = (isset($_REQUEST['enviar']))?$_REQUEST['enviar']:"";
 
 
         if($enviar){
         include("conexion.php");
         $sql="INSERT into policias(nombre,apellido,legajo,nivel_usuario,estado) values 
-        ('$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[legajo]','$_REQUEST[nivel_usuario]','espera')";
+        ('$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[legajo]','noadmin','espera')";
         
         mysqli_query($conexion,$sql)
         or die("Problemas en el select".mysqli_error($conexion));
         mysqli_close($conexion);
-        echo "Muchas gracias! Espere confirmación.";
-        
-        /*?>
-        <p>
-            Muchas gracias! Espere confirmación.<br>
-            <form method="post" action="fin_registro.php">
-            <input type="submit" value="Volver a la pagina Principal" name="inicio">
-            </form>
-
-        </p>
-        <?php*/
-        }
-
-        /*$inicio="";
-        if(isset($_REQUEST['inicio']))$inicio=$_REQUEST['inicio'];
-        if($inicio){
-            header("location:index.php");
-        }
-        ?>*/
         ?>
-        <br><a href="index.php">Cerrar Sesion</a>
+        <p>Muchas gracias! Espere confirmación.</p>
+        <?php    
+        }
+
+        ?>
+        <br><a href="index.php">Volver al Inicio</a>
     </div>
 </body>
 </html>

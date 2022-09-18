@@ -15,23 +15,23 @@
         <form action="fin_registro.php" method="post">
             <h1 class="h3 mb-3 fw-normal">Sistema de Gestión Electrónico Policia BA</h1>
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="Nombre" required>
+                <input type="text" name="nombre" class="form-control" id="floatingInput" placeholder="Nombre" required>
                 <label for="floatingInput">Nombre</label>
             </div>
             <div class="form-floating">
-                <input type="text2" class="form-control" id="floatingInput" placeholder="Apellido" required>
+                <input type="text2" name="apellido" class="form-control" id="floatingInput" placeholder="Apellido" required>
                 <label for="floatingInput">Apellido</label>
             </div>
             <div class="form-floating">
-                 <input type="password" class="form-control" id="floatingPassword" placeholder="Legajo" required>
+                 <input type="password" name="legajo" class="form-control" id="floatingPassword" placeholder="Legajo" required>
                 <label for="floatingPassword">Legajo</label>
             </div>
-            <select class="form-select" name="nivel_usuario">
+            <!-- <select class="form-select" name="nivel_usuario">
                 <option value="noadmin">No Admin</option>
                 <option value="admin">Admin</option>
-            </select>
-            <button class="btn btn-primary btn-lg" type="Sumbit" value="Enviar">Enviar</button>
-            <button class="btn btn-primary btn-lg" type="button" onclick='volver()'>Volver</button>
+            </select> -->
+            <button class="btn btn-primary btn-lg" type="Sumbit" value="Enviar" name="enviar" >Enviar</button>
+            <button class="btn btn-primary btn-lg" type="button" value="Volver" onclick='volver()'>Volver</button>
         </form>
     </main>
     <script>

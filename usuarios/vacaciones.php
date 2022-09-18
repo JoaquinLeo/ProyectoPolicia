@@ -11,6 +11,7 @@
 </head>
 <body>
         <ul>
+            <li><a href="index.php">Presentismo</a></li> 
             <li><a href="enfermedad.php">Enfermedad</a></li>
             <li><a href="vacaciones.php">Vacaciones</a></li>
             <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
