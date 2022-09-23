@@ -1,5 +1,13 @@
 <?php
     include("../sesion.php");
+    if($_SESSION['nivel_usuario'] != "admin"){
+        echo "usted no tiene autorizacion";
+
+        ?>
+        <br><a href="../index.php">Volver al Inicio</a>
+        <?php
+        die();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

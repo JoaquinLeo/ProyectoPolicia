@@ -2,7 +2,7 @@
     $dbhost = "localhost";
     $dbuser = "root";
     $dbpass = "";
-    $dbname = "dbPolicia";
+    $dbname = "dbpolicia";
     
     $conexion = mysqli_connect($dbhost, $dbuser, $dbpass , $dbname);
     

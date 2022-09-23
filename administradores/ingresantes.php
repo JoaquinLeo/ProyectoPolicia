@@ -2,7 +2,7 @@
     include("../sesion.php");
     include("../conexion.php");
 
-    $sql="SELECT * FROM policias";
+    $sql="SELECT * FROM policias WHERE estado <>'borrado'";
     
     $rta= mysqli_query($conexion,$sql) or
     die("Problemas en el select:".mysqli_error($conexion));
@@ -13,6 +13,12 @@
 
     $seleccion = (isset($_REQUEST['seleccion']))?$_REQUEST['seleccion']:"";
     $busqueda = (isset($_REQUEST['busqueda']))?$_REQUEST['busqueda']:"";
+
+    $nombre= (isset($_REQUEST['nombre']))?$_REQUEST['nombre']:"";
+    $apellido= (isset($_REQUEST['apellido']))?$_REQUEST['apellido']:"";; 
+    $legajo= (isset($_REQUEST['legajo']))?$_REQUEST['legajo']:"";
+    $nivel_usuario= (isset($_REQUEST['nivel_usuario']))?$_REQUEST['nivel_usuario']:"";
+
 
     switch($opcion){
 
@@ -40,7 +46,7 @@
 
         case "Borrar" : 
 
-            $sql2 = "DELETE FROM policias WHERE policia_id='$id'";
+            $sql2 = "UPDATE policias SET estado='borrado' WHERE policia_id='$id'";
             if(mysqli_query($conexion,$sql2)) {
                 header("Location:ingresantes.php");
             }
@@ -48,27 +54,32 @@
                 echo "Error".$sql2."<br/>".mysqli_error($conexion);
             }
             break;
-        case "Buscar" : 
 
-            $sql="SELECT * FROM policias WHERE $seleccion='$busqueda'";
-    
-            $rta= mysqli_query($conexion,$sql) or
+        case "Seleccionar" : 
+
+            $sql3 = "SELECT * FROM policias WHERE policia_id='$id'";
+            $rta2 = mysqli_query($conexion,$sql3) or
             die("Problemas en el select:".mysqli_error($conexion));
-           /* echo $seleccion;
+        
+            $seleccion = mysqli_fetch_array($rta2);
+            $nombre= $seleccion['nombre'] ; 
+            $apellido= $seleccion['apellido'] ; 
+            $legajo= $seleccion['legajo'] ; 
+            $nivel_usuario= $seleccion['nivel_usuario'] ; 
 
-            echo $busqueda;
 
-            while ($mostrar = mysqli_fetch_array($rta))
-        {
+            break;
 
-            echo $mostrar['nombre'];
-            echo $mostrar['apellido'];
-            echo $mostrar['legajo'];
-            echo $mostrar['nivel_usuario'];
-            echo $mostrar['estado'];
+        case "Modificar" : 
 
-   
-        }*/
+            $sql2 = "UPDATE policias SET nombre='$nombre', apellido='$apellido', legajo='$legajo',
+            nivel_usuario='$nivel_usuario' WHERE policia_id='$id'";
+            if(mysqli_query($conexion,$sql2)) {
+                header("Location:ingresantes.php");
+            }
+            else{
+                echo "Error".$sql2."<br/>".mysqli_error($conexion);
+            }
             break;
     }
 
@@ -99,18 +110,6 @@
 
  
     <table border="1" id="tabla">
-      <!--   <form method="POST">
-            Seleccionar por: 
-            <select name="seleccion">
-                <option value="nombre">Nombre</option>
-                <option value="apellido">Apellido</option>
-                <option value="legajo">Legajo</option>
-                <option value="nivel_usuario">Nivel de usuario</option>
-                <option value="estado">Estado</option>
-            </select>
-                <input type="text" name="busqueda" placeholder="escribir aqui">
-                <input type="submit" name="opcion" value="Buscar"><br><br>
-        </form> -->
 
         <caption>Ingresantes</caption>
         <thead>
@@ -120,7 +119,7 @@
                 <td>Legajo</td> 
                 <td>Nivel de usuario</td> 
                 <td>Estado</td>
-                <td>Opcion</td>
+                <td>Opciones</td>
             </tr>
         </thead>
         
@@ -139,14 +138,33 @@
                     <input type="hidden" name="id"  value="<?= $mostrar['policia_id'] ?>">
                     <input type="submit" name="opcion" value="Aceptar">
                     <input type="submit" name="opcion" value="Rechazar">
-                    <input type="submit" name="opcion" value="Borrar">
-                </form>     
+                    <input type="submit" name="opcion" value="Seleccionar">
+                    <input type="submit" name="opcion" value="Borrar">  
+                </form> 
             </td>
         </tr>
     <?php    
         }
     ?>  
-    </table>     
+
+    </table> 
+    
+    <br><br><br>
+    <form method="POST">
+        <input type="hidden" name="id" value="<?php echo $id;?>"><br>
+        Nombre:
+        <input type="text" name="nombre" value="<?php echo $nombre;?>" placeholder="nombre"><br>
+        Apellido:
+        <input type="text" name="apellido" value="<?php echo $apellido;?>" placeholder="apellido"><br>
+        Legajo:
+        <input type="text" name="legajo" value="<?php echo $legajo;?>" placeholder="legajo"><br>
+        Nivel de usuario:
+        <select name="nivel_usuario">
+            <option value="noadmin">noadmin</option>
+            <option value="admin">admin</option>
+        </select><br>
+        <input type="submit" name="opcion" value="Modificar">
+    </form>
     
 </body>
 </html>

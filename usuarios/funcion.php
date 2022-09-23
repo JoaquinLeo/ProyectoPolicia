@@ -12,7 +12,7 @@
             header("Location:presentismo.php");
             break;
         case "bicicleta" :
-            header("Location:bicicleta.php");
+            header("Location:bicicletas.php");
             break;
         case "cuatriciclo" :
             header("Location:cuatriciclo.php");

@@ -52,7 +52,7 @@
             <td> <?php echo $mostrar['apellido'] ?> </td> 
             <td> <?php echo $mostrar['legajo'] ?> </td> 
             <td> <?php echo $mostrar['fecha'] ?> </td> 
-            <td><img src="data:image/jpg;base64,  <?php echo base64_encode($mostrar['certificado']) ?>" height="50px;" width="50px;"/> </td> 
+            <td><img src="data:image/jpg;base64,  <?php echo base64_encode($mostrar['certificado']) ?>" height="150px;" width="150px;"/> </td> 
         </tr>
     <?php    
         }

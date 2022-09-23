@@ -5,7 +5,7 @@
     
 
     $sql = "SELECT movil_id,nro_serie,tipo_movil,estado,posesion FROM moviles
-    where   estado <> 'radiado' and (tipo_movil = 'auto' or tipo_movil = 'camioneta')  order by movil_id asc";
+    where   estado <> 'radiado' and (tipo_movil = 'bicicleta')  order by movil_id asc";
 
     $rta = mysqli_query($conexion,$sql) or 
     die("Problemas en el select:".mysqli_error($conexion));
@@ -39,7 +39,6 @@
                 <td>Tipo de Movil</td> 
                 <td>Estado</td> 
                 <td>Posesion</td> 
-                <td>Funcion</td> 
                 <td>Opciones</td> 
             </tr>
             <?php  
@@ -56,13 +55,6 @@
                 <td><?php echo $mostrar['posesion']?></td>
                 
                     <form method="POST">
-
-                        <td>
-                            <select name="funcion">
-                                <option value="chofer">Chofer</option>
-                                <option value="acompañante">Acompañante</option>
-                            </select> 
-                        </td> 
 
                         <td>
                             <?php
@@ -91,7 +83,7 @@
         {
             
             $movil_id = $_REQUEST['movil_id'];
-            $funcion = $_REQUEST['funcion'];
+            $funcion = "ciclista";
             $estado = $_REQUEST['estado'];
             $id = $_SESSION['id'];
     

@@ -26,6 +26,7 @@
                  session_start();
                  $_SESSION['usuario']=$usuario;
                  $_SESSION['legajo']=$contrasenna;
+                 $_SESSION['nivel_usuario'] = $reg['nivel_usuario'];
                  $_SESSION['id']=$reg['policia_id'];
                  header("location:./administradores/index.php");
             }
@@ -33,6 +34,7 @@
                 session_start();
                  $_SESSION['usuario']=$usuario;
                  $_SESSION['legajo']=$contrasenna;
+                 $_SESSION['nivel_usuario'] = $reg['nivel_usuario'];
                  $_SESSION['id']=$reg['policia_id'];
                  header("location:./usuarios/index.php");
             }
@@ -40,7 +42,13 @@
         else
         {
             include("index.php");
-            echo "Error intentar nuevamente";
+            ?>
+            <script type="text/javascript">
+                alert("Error intentar nuevamente.");
+            </script>
+               
+            <?php
+            //echo "Error intentar nuevamente";
         }
         
     }

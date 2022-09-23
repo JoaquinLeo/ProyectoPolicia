@@ -1,18 +1,18 @@
 Corto plazo
 
-1. Registro. Sacar Admin/No admin, los admins lo cambian dentro
+1. Registro. Sacar Admin/No admin, los admins lo cambian dentro . LISTO
 
-2. Bicis , cuatris , misma tabla . Dudas
+2. Bicis , cuatris , misma tabla . LISTO
 
 3. No radiados en el presentismo . LISTO
 
-4. Mostrar previsualizacion de la imagen y una descripcion
+4. Mostrar previsualizacion de la imagen y una descripcion 
 
-5. Mostrar mas grandes las imagenes
+5. Mostrar mas grandes las imagenes . LISTO
 
-6. Bienvenido tal usuario . Listo
+6. Bienvenido tal usuario . LISTO
 
-7. Controlar coches
+7. Controlar coches 
 
 8. agregar y mostrar presentismo 
 
