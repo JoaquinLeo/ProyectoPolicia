@@ -44,8 +44,6 @@
             </tr>
             <?php  
                 while($mostrar = mysqli_fetch_array($rta)){
-                    if($mostrar['posesion']==0)$mostrar['posesion']="no";
-                    else $mostrar['posesion']="si";
                     $contador=1;
             ?>
             <tr>
