@@ -2,34 +2,48 @@
     include("../sesion.php");
     include("../conexion.php");
 
-    
-
     $sql = "SELECT movil_id,nro_serie,tipo_movil,estado,posesion FROM moviles
     where   estado <> 'radiado' and (tipo_movil = 'auto' or tipo_movil = 'camioneta')  order by movil_id asc";
 
     $rta = mysqli_query($conexion,$sql) or 
     die("Problemas en el select:".mysqli_error($conexion));
 
+    if(isset($_REQUEST['seleccionar']))
+    {
+        
+        $movil_id = $_REQUEST['movil_id'];
+        $funcion = $_REQUEST['funcion'];
+        $estado = $_REQUEST['estado'];
+        $id = $_SESSION['id'];
 
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $fecha = date("Y-m-d H:i:s");
+        
+        $insert="INSERT INTO presentismo(policia_id,movil_id,funcion,fecha,estado_movil) values 
+            ('$id',$movil_id,'$funcion','$fecha', '$estado')";
+
+        mysqli_query($conexion,$insert)
+        or die("Problemas en el select".mysqli_error($conexion));
+
+        $sql = "UPDATE moviles SET posesion = 1 WHERE movil_id = '$movil_id'";
+        mysqli_query($conexion,$sql)
+        or die("Problemas en el select".mysqli_error($conexion));
+
+        ?>
+        <!-- <script type="text/javascript">
+            alert("Muchas gracias! Se presentismo fue correcto.");
+            //location.reload();
+        </script> -->
+            
+        <?php
+
+        header("Location:bicicletas.php");
+        
+    }
+
+    include("cabeceraU.php");
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moviles</title>
-</head>
-<body>
-    
-        <ul>
-            <li><a href="index.php">Presentismo</a></li>    
-            <li><a href="enfermedad.php">Enfermedad</a></li>
-            <li><a href="vacaciones.php">Vacaciones</a></li>
-            <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
-        </ul>
 
-        <h1>Sistema de Gestión Electrónico Policia BA</h1>
 
         <table border="1">
         <caption>Moviles Policiales</caption>
@@ -45,6 +59,12 @@
             <?php  
                 while($mostrar = mysqli_fetch_array($rta)){
                     $contador=1;
+                    if($mostrar['posesion']==0){
+                        $mostrar['posesion']="no";
+                    }
+                    else{
+                        $mostrar['posesion']="si";
+                    }
             ?>
             <tr>
                 <td><?php echo $mostrar['movil_id']?></td>
@@ -84,33 +104,7 @@
                 }
             ?>
         </table>
-    <?php
-        if(isset($_REQUEST['seleccionar']))
-        {
-            
-            $movil_id = $_REQUEST['movil_id'];
-            $funcion = $_REQUEST['funcion'];
-            $estado = $_REQUEST['estado'];
-            $id = $_SESSION['id'];
-    
-            date_default_timezone_set('America/Argentina/Buenos_Aires');
-            $fecha = date("Y-m-d H:i:s");
-            
-            $insert="INSERT INTO presentismo(policia_id,movil_id,funcion,fecha,estado_movil) values 
-                ('$id',$movil_id,'$funcion','$fecha', '$estado')";
-    
-            mysqli_query($conexion,$insert)
-            or die("Problemas en el select".mysqli_error($conexion));
-            mysqli_close($conexion);
-            ?>
-            <script type="text/javascript">
-                alert("Muchas gracias! Se presentismo fue correcto.");
-            </script>
-               
-            <?php
-            
-        }
-    ?>
+
     
 </body>
 </html>

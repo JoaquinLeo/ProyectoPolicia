@@ -12,9 +12,9 @@ Corto plazo
 
 6. Bienvenido tal usuario . LISTO
 
-7. Controlar coches 
+7. Controlar coches . LISTO
 
-8. agregar y mostrar presentismo 
+8. agregar y mostrar presentismo . LISTO
 
 Largo plazo
 

@@ -9,8 +9,6 @@
         <?php
         die();
     }*/
-    date_default_timezone_set('America/Argentina/Buenos_Aires');
-    $fecha = date("Y-m-d");
 
     $sql = "SELECT policias.nombre , policias.apellido , policias.legajo , 
     COALESCE(moviles.tipo_movil,'-') AS tipo_movil , COALESCE(moviles.nro_serie,'-') AS nro_serie, 
@@ -18,7 +16,7 @@
     COALESCE(presentismo.estado_movil,'-') AS estado_movil FROM policias 
     INNER JOIN presentismo on presentismo.policia_id = policias.policia_id 
     LEFT JOIN moviles on moviles.movil_id = presentismo.movil_id 
-    WHERE date(presentismo.fecha)='$fecha'
+
     ORDER BY presentismo.fecha ASC"; 
     
     $rta= mysqli_query($conexion,$sql)
@@ -28,13 +26,6 @@
 
 ?>
 
-
-    <h3>Bienvenido <?php echo $_SESSION['usuario'] ?></h3>
-
-    <?php 
-    if(mysqli_fetch_row($rta)){
-    ?>
-    
     <table border="1">
         <caption>Presentismo</caption>
         <tr>
@@ -64,12 +55,7 @@
     ?>
 
     </table>
-    <?php    
-        }
-        else{
-            echo "<p>Aun no hay presentes hoy</p>";
-        }
-    ?>
+    
 
 </body>
 </html>

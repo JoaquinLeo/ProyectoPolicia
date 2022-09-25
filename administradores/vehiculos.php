@@ -62,32 +62,23 @@
             }
             break;
 
+        case "Agregar" : 
+
+            $sql2 = "INSERT INTO moviles(nro_serie, tipo_movil, estado, posesion) values
+            ('$nro_serie','$tipo_movil','$estado','$posesion')";
+            if(mysqli_query($conexion,$sql2)) {
+                header("Location:vehiculos.php");
+            }
+            else{
+                echo "Error".$sql2."<br/>".mysqli_error($conexion);
+            }
+            break;
+
     }
 
+    include("cabeceraA.php");
+
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
-    <nav>
-        <ul>
-            <li><a href="index.php">Control</a></li>
-            <li><a href="ingresantes.php">Ingresantes</a></li>
-            <li><a href="vacaciones.php">Vacaciones</a></li>
-            <li><a href="enfermedades.php">Enfermedades</a></li>
-            <li><a href="vehiculos.php">Vehiculos</a></li>
-            <li><a href="../cerrar_session.php">Cerrar Sesion</a></li>
-        </ul>
-    </nav>
-
-    <h1>Sistema de Gestión Electrónico Policia BA</h1>
 
     <table border="1">
         <caption>Moviles</caption>
@@ -134,28 +125,56 @@
 
     <br><br><br>
     <form method="POST">
-        <input type="hidden" name="id" value="<?php echo $id;?>"><br>
-        Numero de Serie:
+        <h3>Modificar vehiculos</h3>
+        <input type="hidden" name="id" value="<?php echo $id;?>">
+        Numero de Serie actual:
         <input type="text" name="nro_serie" value="<?php echo $nro_serie;?>" placeholder="nro_serie"><br>
-        Estado: <?php echo $estado;?>
+        Estado actual: <?php echo $estado;?>
         <select name="estado"> 
-            <option value="bien">Bien</option>
-            <option value="regular">Regular</option>
-            <option value="radiado">Radiado</option>
+            <option value="bien" <?php echo ($estado=="bien")?"selected":""; ?> >Bien</option>
+            <option value="regular"  <?php echo ($estado=="regular")?"selected":""; ?> >Regular</option>
+            <option value="radiado" <?php echo ($estado=="radiado")?"selected":""; ?> >Radiado</option>
         </select><br>
-        Posesion: <?php echo $posesion;?>
+        Posesion actual: <?php echo $posesion;?>
+        <select name="posesion">
+            <option value="si" <?php echo ($posesion=="si")?"selected":""; ?> >Si</option>
+            <option value="no" <?php echo ($posesion=="no")?"selected":""; ?> >No</option>
+        </select><br>
+        Tipo de movil actual: <?php echo $tipo_movil;?>
+        <select name="tipo_movil">
+            <option value="auto" <?php echo ($tipo_movil=="auto")?"selected":""; ?> >Auto</option>
+            <option value="camioneta" <?php echo ($tipo_movil=="camioneta")?"selected":""; ?> >Camioneta</option>
+            <option value="cuatriciclo" <?php echo ($tipo_movil=="cuatriciclo")?"selected":""; ?> >Cuatriciclo</option>
+            <option value="bicicleta" <?php echo ($tipo_movil=="bicicleta")?"selected":""; ?> >Bicicleta</option>
+        </select><br>
+        <input type="submit" name="opcion" value="Modificar">
+    </form>
+
+    <br><br><br>
+    <form method="POST">
+        <h3>Agregar vehiculos</h3>
+        Numero de Serie:
+        <input type="text" name="nro_serie" placeholder="nro_serie"><br>
+        Estado: 
+        <select name="estado"> 
+            <option value="bien" >Bien</option>
+            <option value="regular" >Regular</option>
+            <option value="radiado" >Radiado</option>
+        </select><br>
+        Posesion: 
         <select name="posesion">
             <option value="si">Si</option>
-            <option value="no">No</option>
+            <option value="no" selected>No</option>
         </select><br>
-        Tipo de movil: <?php echo $tipo_movil;?>
+        Tipo de movil:
         <select name="tipo_movil">
             <option value="auto">Auto</option>
             <option value="camioneta">Camioneta</option>
             <option value="cuatriciclo">Cuatriciclo</option>
             <option value="bicicleta">Bicicleta</option>
         </select><br>
-        <input type="submit" name="opcion" value="Modificar">
+        <input type="submit" name="opcion" value="Agregar">
     </form>
+
 </body>
 </html>
