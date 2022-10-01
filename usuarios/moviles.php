@@ -37,12 +37,16 @@
             
         <?php
 
-        header("Location:bicicletas.php");
+        $var = "Su presente fue dado con exito";
+        echo "<script> alert('".$var."');</script>";
+        echo "<script>setTimeout( function() { window.location.href = 'http://localhost/ProyectoPolicia/usuarios/index.php'; }, 50 ); </script>";
+        
         
     }
 
     include("cabeceraU.php");
 ?>
+
 
 
         <table border="1">

@@ -46,7 +46,7 @@
             
         <?php
 
-        header("Location:bicicletas.php");
+        header("Location:index.php");
         
     }
 

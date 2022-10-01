@@ -19,10 +19,9 @@
     or die("Problemas en el select".mysqli_error($conexion));
     mysqli_close($conexion);
     ?>
-            <script type="text/javascript">
-                alert("Muchas gracias! Se presentismo fue correcto.");
-            </script>
-            <a href="index.php">Volver al inicio</a>
-    <?php  
+      <?php 
+        $var= "Muchas gracias! Se presentismo fue correcto.";
+        echo  "<script> alert('".$var."');</script>";
+        echo  "<script> setTimeout( function() { window.location.href = 'http://localhost/ProyectoPolicia/usuarios/index.php'; }, 50 );</script>"
 
-?>
+    ?>
