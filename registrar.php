@@ -1,17 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link href="./estilos/Logreg.css" rel="stylesheet">
-    <title>Document</title>
+<?php
 
-</head>
-<body class="text-center">
+    if(isset($_REQUEST['enviar'])){
+
+        include("conexion.php");
+        $sql="INSERT into policias(nombre,apellido,legajo,nivel_usuario,estado) values 
+        ('$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[legajo]','noadmin','espera')";
+        
+        mysqli_query($conexion,$sql)
+        or die("Problemas en el select".mysqli_error($conexion));
+        mysqli_close($conexion);
+
+        $var = "Muchas gracias! Registro con exito, espere confirmación.";
+        echo "<script> alert('".$var."');</script>";
+        echo "<script>setTimeout( function() { window.location.href = 'index.php'; }, 10 ); </script>";
+    }
+
+    include("cabeceraI.php");
+?>
     <main class="form-signin w-100 m-auto">
-        <form action="fin_registro.php" method="post">
+        <form method="POST">
             <h1 class="h3 mb-3 fw-normal">Sistema de Gestión Electrónico Policia BA</h1>
             <div class="form-floating">
                 <input type="text" name="nombre" class="form-control" id="floatingInput" placeholder="Nombre" required>

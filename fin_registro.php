@@ -1,3 +1,6 @@
+<?php
+        // SE PUEDE BORRAR ESTA PAGINA, YA NO HACE NADA (ahora directo en registrar.php)
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

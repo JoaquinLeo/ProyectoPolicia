@@ -10,6 +10,8 @@
     $ffin = $_REQUEST['ffin'];
     $estado = 'espera';
 
+    
+
     $sql = "INSERT INTO vacaciones (policia_id,fecha_inicio,fecha_fin,estado) values ('$id','$finicio','$ffin','$estado')";
     
     $querry= mysqli_query($conexion,$sql) or

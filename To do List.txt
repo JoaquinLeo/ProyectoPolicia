@@ -18,12 +18,12 @@ Corto plazo
 
 Largo plazo
 
-1. finalizar servicio en la pagina de entrada
+1. finalizar servicio en la pagina de entrada . LISTO
 
-2. chofer + acompañante = ocupado
+2. chofer + acompañante = ocupado . LISTO
 
 3. controlar ejor las vacaciones, x años de exp son X dias de vacaciones
 
 SUPER ADMIN
 
-1. Dar vacaciones
+1. Dar vacaciones 

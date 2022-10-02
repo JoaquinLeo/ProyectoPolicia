@@ -22,7 +22,7 @@
         if($reg)
         {   
 
-            if($reg['nivel_usuario'] == "admin"){
+            if($reg['nivel_usuario'] == "admin" || $reg['nivel_usuario'] == "superadm"){
                  session_start();
                  $_SESSION['usuario']=$usuario;
                  $_SESSION['legajo']=$contrasenna;

@@ -9,13 +9,13 @@
             header("Location:moviles.php");
             break;
         case "caminante" :
-            header("Location:presentismo.php");
+            header("Location:caminante.php");
             break;
         case "bicicleta" :
             header("Location:bicicletas.php");
             break;
         case "cuatriciclo" :
-            header("Location:cuatriciclo.php");
+            header("Location:cuatriciclos.php");
             break;
     }
 

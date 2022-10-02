@@ -138,11 +138,18 @@
         <input type="text" name="apellido" value="<?php echo $apellido;?>" placeholder="apellido"><br>
         Legajo:
         <input type="text" name="legajo" value="<?php echo $legajo;?>" placeholder="legajo"><br>
+        <?php if($_SESSION["nivel_usuario"]== "superadm"){?>
         Nivel de usuario:
         <select name="nivel_usuario">
             <option value="noadmin">noadmin</option>
             <option value="admin">admin</option>
         </select><br>
+        <?php }
+        else{   ?>
+            <input type="hidden" name="nivel_usuario" value="<?php echo $nivel_usuario;?>">
+        <?php 
+            }
+        ?>
         <input type="submit" name="opcion" value="Modificar">
     </form>
     

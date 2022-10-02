@@ -5,7 +5,9 @@
      
 
     $sql = "SELECT movil_id,nro_serie,tipo_movil,estado,posesion FROM moviles
-    where   estado <> 'radiado' and (tipo_movil = 'bicicleta')  order by movil_id asc";
+    where   ( estado <> 'radiado' and estado <> 'borrado' ) and (tipo_movil = 'bicicleta')  
+    and posesion <> 1
+    order by movil_id asc";
 
     $rta = mysqli_query($conexion,$sql) or 
     die("Problemas en el select:".mysqli_error($conexion));
@@ -16,6 +18,7 @@
         $movil_id = $_REQUEST['movil_id'];
         $funcion = "ciclista";
         $estado = $_REQUEST['estado'];
+        $posesion = $_REQUEST['posesion'];
         $id = $_SESSION['id'];
 
         date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -23,30 +26,24 @@
         
         $insert="INSERT INTO presentismo(policia_id,movil_id,funcion,fecha,estado_movil) values 
             ('$id',$movil_id,'$funcion','$fecha', '$estado')";
-
         mysqli_query($conexion,$insert)
         or die("Problemas en el select".mysqli_error($conexion));
-            
-        $sql = "UPDATE moviles SET posesion = 1 WHERE movil_id = '$movil_id'";
-        mysqli_query($conexion,$sql)
+
+        $update = "UPDATE policias SET servicio='si' WHERE policia_id='$id'";
+        mysqli_query($conexion,$update)
         or die("Problemas en el select".mysqli_error($conexion));
 
-        ?>
-        <!-- <script type="text/javascript">
-            //alert("Muchas gracias! Se presentismo fue correcto."); 
-            //await new Promise(resolve => setTimeout(resolve, 5000));
-            alert("Muchas gracias! Se presentismo fue correcto."); 
-            setTimeout(function(){
-                
-            }, 2000);
-
-        </script> -->
-
-        
+        $update2 = "UPDATE policia_movil SET movil_id='$movil_id' , funcion='$funcion' WHERE policia_id='$id'";
+        mysqli_query($conexion,$update2)
+        or die("Problemas en el select".mysqli_error($conexion));
             
-        <?php
+        $update3 = "UPDATE moviles SET posesion = 1 WHERE movil_id = '$movil_id'";
+        mysqli_query($conexion,$update3)
+        or die("Problemas en el select".mysqli_error($conexion));
 
-        header("Location:index.php");
+        $var = "Su presente fue dado con exito";
+        echo "<script> alert('".$var."');</script>";
+        echo "<script>setTimeout( function() { window.location.href = 'index.php'; }, 10 ); </script>";
         
     }
 
@@ -63,39 +60,31 @@
                 <td>Numero</td> 
                 <td>Nro Serie</td> 
                 <td>Tipo de Movil</td> 
-                <td>Estado</td> 
-                <td>Posesion</td> 
+                <td>Estado</td>  
                 <td>Opciones</td> 
             </tr>
             <?php  
+                $contador=1;
                 while($mostrar = mysqli_fetch_array($rta)){
-                    $contador=1;
-                    if($mostrar['posesion']==0){
-                        $mostrar['posesion']="no";
-                    }
-                    else{
-                        $mostrar['posesion']="si";
-                    }
+                    
             ?>
             <tr>
-                <td><?php echo $mostrar['movil_id']?></td>
+                <td><?php echo $contador?></td>
                 <td><?php echo $mostrar['nro_serie']?></td>
                 <td><?php echo $mostrar['tipo_movil']?></td>
                 <td><?php echo $mostrar['estado']?></td>
-                <td><?php echo $mostrar['posesion']?></td>
                 
                     <form method="POST">
 
                         <td>
                             <?php
-                                if($mostrar['posesion']=="no"){
+                                if($mostrar['posesion']==0){
                             ?>  
                                 <input type="hidden" name="estado"  value="<?= $mostrar['estado'] ?>">
                                 <input type="hidden" name="movil_id"  value="<?= $mostrar['movil_id'] ?>">
                                 <input type="submit" value="seleccionar" name="seleccionar">
                             <?php
                                 }
-                                else echo "ocupado"; 
                             ?>
                         </td>   
 
@@ -104,7 +93,7 @@
             </tr>
             
             <?php
-                
+                $contador++;
                 }
             ?>
         </table>

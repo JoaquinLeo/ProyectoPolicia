@@ -1,27 +1,30 @@
 <?php
-
     include("../sesion.php");
     include("../conexion.php");
-
-    $movil="null";
-    $funcion="caminante";
-    $estado="null";
-    $id = $_SESSION['id'];
-
-    date_default_timezone_set('America/Argentina/Buenos_Aires');
-    $fecha = date("Y-m-d H:i:s");
-
     
-    $insert="INSERT INTO presentismo(policia_id,movil_id,funcion,fecha,estado_movil) values 
-        ('$id', NULL ,'$funcion','$fecha', NULL)";
 
-    mysqli_query($conexion,$insert)
-    or die("Problemas en el select".mysqli_error($conexion));
-    mysqli_close($conexion);
-    ?>
-      <?php 
-        $var= "Muchas gracias! Se presentismo fue correcto.";
-        echo  "<script> alert('".$var."');</script>";
-        echo  "<script> setTimeout( function() { window.location.href = 'http://localhost/ProyectoPolicia/usuarios/index.php'; }, 50 );</script>"
+    $id= $_SESSION["id"];
+    $sql = "SELECT servicio FROM policias WHERE policia_id='$id'";
+    $rta = mysqli_query($conexion,$sql) or 
+    die("Problemas en el select:".mysqli_error($conexion));
+    $mostrar = mysqli_fetch_array($rta);
+    /* <?php echo ($mostrar['servicio']=="si")?"disabled":""; ?> */
 
-    ?>
+    include("cabeceraU.php");
+?>
+
+    <form method="POST" action="funcion.php">
+        Seleccionar: 
+        <select name="funcion">
+            <option value="movil">Moviles</option>
+            <option value="caminante">Caminante</option>
+            <option value="bicicleta">Bicicletas</option>
+            <option value="cuatriciclo">Cuatriciclos</option>
+        </select>
+        <br><input type="submit" value="seleccionar" name="selecionar"
+        <?php echo ($mostrar['servicio']=="si")?"disabled":"";  ?> ><br><br>
+
+    </form>
+  
+</body>
+</html>
