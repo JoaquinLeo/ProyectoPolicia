@@ -10,7 +10,7 @@
         or die("Problemas en el select".mysqli_error($conexion));
         mysqli_close($conexion);
 
-        $var = "Muchas gracias! Registro con exito, espere confirmación.";
+        $var = "Muchas gracias! Registro con exito.";
         echo "<script> alert('".$var."');</script>";
         echo "<script>setTimeout( function() { window.location.href = 'index.php'; }, 10 ); </script>";
     }

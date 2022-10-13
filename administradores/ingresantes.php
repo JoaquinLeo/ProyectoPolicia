@@ -18,6 +18,7 @@
     $apellido= (isset($_REQUEST['apellido']))?$_REQUEST['apellido']:"";; 
     $legajo= (isset($_REQUEST['legajo']))?$_REQUEST['legajo']:"";
     $nivel_usuario= (isset($_REQUEST['nivel_usuario']))?$_REQUEST['nivel_usuario']:"";
+    $estado= (isset($_REQUEST['estado']))?$_REQUEST['estado']:"";
 
 
     switch($opcion){
@@ -25,12 +26,35 @@
         case "Aceptar" : 
 
             $sql2 = "UPDATE policias SET estado='aceptado' WHERE policia_id='$id'";
-            if(mysqli_query($conexion,$sql2)) {
-                header("Location:ingresantes.php");
-            }
-            else{
+            if(!mysqli_query($conexion,$sql2)) {
                 echo "Error".$sql2."<br/>".mysqli_error($conexion);
             }
+
+            if($estado == "espera"){
+
+                $sql2 = "INSERT INTO policia_movil (policia_id , movil_id , funcion) VALUES ('$id',NULL,NULL)";
+                if(!mysqli_query($conexion,$sql2)) {
+                    echo "Error".$sql2."<br/>".mysqli_error($conexion);
+                }
+
+            }   
+            
+            else{
+
+                $sql2 = "SELECT * FROM policia_movil WHERE policia_id = '$id'";
+                $rta2= mysqli_query($conexion,$sql2) or
+                die("Problemas en el select:".mysqli_error($conexion));
+
+                $reg=mysqli_fetch_array($rta2);
+
+                if(!$reg){
+                    $sql2 = "INSERT INTO policia_movil (policia_id , movil_id , funcion) VALUES ('$id',NULL,NULL)";
+                    if(!mysqli_query($conexion,$sql2)) {
+                        echo "Error".$sql2."<br/>".mysqli_error($conexion);
+                    }
+                }
+            }
+            header("Location:ingresantes.php");
             break;
 
         case "Rechazar" : 
@@ -116,10 +140,11 @@
             <td>
                 <form method="POST">
                     <input type="hidden" name="id"  value="<?= $mostrar['policia_id'] ?>">
-                    <input type="submit" name="opcion" value="Aceptar">
-                    <input type="submit" name="opcion" value="Rechazar">
-                    <input type="submit" name="opcion" value="Seleccionar">
-                    <input type="submit" name="opcion" value="Borrar">  
+                    <input type="hidden" name="estado"  value="<?= $mostrar['estado'] ?>">
+                    <input type="submit" name="opcion"  value="Aceptar">
+                    <input type="submit" name="opcion"  value="Rechazar">
+                    <input type="submit" name="opcion"  value="Seleccionar">
+                    <input type="submit" name="opcion"  value="Borrar">  
                 </form> 
             </td>
         </tr>
