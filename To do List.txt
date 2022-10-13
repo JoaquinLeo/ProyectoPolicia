@@ -22,8 +22,8 @@ Largo plazo
 
 2. chofer + acompañante = ocupado . LISTO
 
-3. controlar ejor las vacaciones, x años de exp son X dias de vacaciones
+3. controlar mejor las vacaciones, x años de exp son X dias de vacaciones . LISTO
 
 SUPER ADMIN
 
-1. Dar vacaciones 
+1. Dar vacaciones . LISTO

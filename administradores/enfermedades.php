@@ -14,7 +14,7 @@
 ?>
 
     <table border="1">
-        <caption>Vacaciones</caption>
+        <caption>Enfermedades</caption>
         <tr>
             <td>Nombre</td> 
             <td>Apellido</td> 

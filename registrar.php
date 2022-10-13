@@ -3,8 +3,8 @@
     if(isset($_REQUEST['enviar'])){
 
         include("conexion.php");
-        $sql="INSERT into policias(nombre,apellido,legajo,nivel_usuario,estado) values 
-        ('$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[legajo]','noadmin','espera')";
+        $sql="INSERT into policias(nombre,apellido,legajo,nivel_usuario,estado,servicio,años_servicio,dias_vacaciones) values 
+        ('$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[legajo]','noadmin','espera','no',0,20)";
         
         mysqli_query($conexion,$sql)
         or die("Problemas en el select".mysqli_error($conexion));

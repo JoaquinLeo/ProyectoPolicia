@@ -17,6 +17,7 @@
     $tipo_movil = (isset($_REQUEST['tipo_movil']))?$_REQUEST['tipo_movil']:"";
     $estado= (isset($_REQUEST['estado']))?$_REQUEST['estado']:"";
     $nro_serie= (isset($_REQUEST['nro_serie']))?$_REQUEST['nro_serie']:"";; 
+    $descripcion= (isset($_REQUEST['descripcion']))?$_REQUEST['descripcion']:"";; 
 
 
     switch($opcion){
@@ -47,13 +48,14 @@
             $tipo_movil= $seleccion['tipo_movil'] ; 
             $nro_serie= $seleccion['nro_serie'] ; 
             $estado= $seleccion['estado'] ; 
+            $descripcion = $seleccion['descripcion'];
 
             break;
 
         case "Modificar" : 
 
             $sql2 = "UPDATE moviles SET posesion='$posesion', tipo_movil='$tipo_movil', estado='$estado',
-            nro_serie='$nro_serie' WHERE movil_id='$id'";
+            nro_serie='$nro_serie' , descripcion='$descripcion' WHERE movil_id='$id'";
             if(mysqli_query($conexion,$sql2)) {
                 header("Location:vehiculos.php");
             }
@@ -100,11 +102,12 @@
             <td> <?php echo $mostrar['tipo_movil'] ?> </td> 
             <td> <?php echo $mostrar['estado'] ?> </td> 
             <td> <?php 
-                    if ($mostrar['posesion'] == "si" ){
-                        echo "si";
+
+                    if($mostrar['posesion'] == 0){
+                        echo "no";
                     }
                     else{
-                        echo"no";
+                        echo"si";
                     }
                  ?> 
             </td> 
@@ -135,10 +138,10 @@
             <option value="regular"  <?php echo ($estado=="regular")?"selected":""; ?> >Regular</option>
             <option value="radiado" <?php echo ($estado=="radiado")?"selected":""; ?> >Radiado</option>
         </select><br>
-        Posesion actual: <?php echo $posesion;?>
+        Posesion actual: <?php if($posesion == 0)echo "no"; else echo"si"; ?>
         <select name="posesion">
-            <option value="si" <?php echo ($posesion=="si")?"selected":""; ?> >Si</option>
-            <option value="no" <?php echo ($posesion=="no")?"selected":""; ?> >No</option>
+            <option value="si" <?php echo ($posesion==1)?"selected":""; ?> >Si</option>
+            <option value="no" <?php echo ($posesion==0)?"selected":""; ?> >No</option>
         </select><br>
         Tipo de movil actual: <?php echo $tipo_movil;?>
         <select name="tipo_movil">
@@ -147,7 +150,10 @@
             <option value="cuatriciclo" <?php echo ($tipo_movil=="cuatriciclo")?"selected":""; ?> >Cuatriciclo</option>
             <option value="bicicleta" <?php echo ($tipo_movil=="bicicleta")?"selected":""; ?> >Bicicleta</option>
         </select><br>
+        Descripcion actual:<br>
+        <textarea name="descripcion" cols="25" rows="10" maxlength="250"><?php echo $descripcion;?></textarea><br>
         <input type="submit" name="opcion" value="Modificar">
+
     </form>
 
     <br><br><br>

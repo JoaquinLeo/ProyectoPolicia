@@ -128,9 +128,9 @@
     ?>  
 
     </table> 
-    
-    <br><br><br>
+        
     <form method="POST">
+        <h3>Editar policias</h3>
         <input type="hidden" name="id" value="<?php echo $id;?>"><br>
         Nombre:
         <input type="text" name="nombre" value="<?php echo $nombre;?>" placeholder="nombre"><br>

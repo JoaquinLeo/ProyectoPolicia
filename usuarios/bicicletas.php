@@ -5,8 +5,8 @@
      
 
     $sql = "SELECT movil_id,nro_serie,tipo_movil,estado,posesion FROM moviles
-    where   ( estado <> 'radiado' and estado <> 'borrado' ) and (tipo_movil = 'bicicleta')  
-    and posesion <> 1
+    where   (estado <> 'radiado' and estado <> 'borrado') 
+    and (tipo_movil = 'bicicleta')  and posesion <> 1
     order by movil_id asc";
 
     $rta = mysqli_query($conexion,$sql) or 
@@ -25,7 +25,7 @@
         $fecha = date("Y-m-d H:i:s");
         
         $insert="INSERT INTO presentismo(policia_id,movil_id,funcion,fecha,estado_movil) values 
-            ('$id',$movil_id,'$funcion','$fecha', '$estado')";
+        ('$id',$movil_id,'$funcion','$fecha', '$estado')";
         mysqli_query($conexion,$insert)
         or die("Problemas en el select".mysqli_error($conexion));
 
