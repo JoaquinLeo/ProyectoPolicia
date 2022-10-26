@@ -113,7 +113,7 @@
 
 
  
-    <table border="1" id="tabla">
+    <table id="tabla">
 
         <caption>Ingresantes</caption>
         <thead>
@@ -154,7 +154,7 @@
 
     </table> 
         
-    <form method="POST">
+    <!-- <form method="POST">
         <h3>Editar policias</h3>
         <input type="hidden" name="id" value="<?php echo $id;?>"><br>
         Nombre:
@@ -176,7 +176,34 @@
             }
         ?>
         <input type="submit" name="opcion" value="Modificar">
-    </form>
+    </form> -->
+    <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">Editar policias</div>
+        <div class="card-body">
+        <form method="POST">
+        <input type="hidden" name="id" value="<?php echo $id;?>"><br>
+        Nombre:
+        <input class="form-control" id="floatingPassword"  type="text" name="nombre" value="<?php echo $nombre;?>" placeholder="nombre"><br>
+        Apellido:
+        <input class="form-control" id="floatingPassword"  type="text" name="apellido" value="<?php echo $apellido;?>" placeholder="apellido"><br>
+        Legajo:
+        <input class="form-control" id="floatingPassword"  type="text" name="legajo" value="<?php echo $legajo;?>" placeholder="legajo"><br>
+        <?php if($_SESSION["nivel_usuario"]== "superadm"){?>
+        Nivel de usuario:
+        <select name="nivel_usuario">
+            <option value="noadmin">noadmin</option>
+            <option value="admin">admin</option>
+        </select><br>
+        <?php }
+        else{   ?>
+            <input type="hidden" name="nivel_usuario" value="<?php echo $nivel_usuario;?>">
+        <?php 
+            }
+        ?>
+        <input class="btn btn-primary btn-sm boton" type="submit" name="opcion" value="Modificar">
+     </form>
+        </div>
+    </div>
     
 </body>
 </html>

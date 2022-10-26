@@ -11,9 +11,9 @@
             Ingrese su Usuario:
             <input type="text" name="usuario" value="<?= $_SESSION['usuario']?>" readonly><br>
             Ingrese su fecha de inicio:
-            <input type="date" min="<?=$fecha?>" name="finicio" required><br>
+            <input class="form-control w-25" type="date" min="<?=$fecha?>" name="finicio" required><br>
             Ingrese su fecha de fin:
-            <input type="date" min="<?=$fecha?>" name="ffin" required><br>
+            <input class="form-control w-25" type="date" min="<?=$fecha?>" name="ffin" required><br>
             <input type="submit" value="Enviar" name="enviar"><br>  
         </form>
 

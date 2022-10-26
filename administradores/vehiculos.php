@@ -82,7 +82,7 @@
 
 ?>
 
-    <table border="1">
+    <table>
         <caption>Moviles</caption>
         <tr>
             <td>Numero</td> 
@@ -126,8 +126,7 @@
 
     </table>
 
-    <br><br><br>
-    <form method="POST">
+    <!-- <form method="POST">
         <h3>Modificar vehiculos</h3>
         <input type="hidden" name="id" value="<?php echo $id;?>">
         Numero de Serie actual:
@@ -154,10 +153,9 @@
         <textarea name="descripcion" cols="25" rows="10" maxlength="250"><?php echo $descripcion;?></textarea><br>
         <input type="submit" name="opcion" value="Modificar">
 
-    </form>
+    </form> -->
 
-    <br><br><br>
-    <form method="POST">
+    <!-- <form method="POST">
         <h3>Agregar vehiculos</h3>
         Numero de Serie:
         <input type="text" name="nro_serie" placeholder="nro_serie"><br>
@@ -180,7 +178,72 @@
             <option value="bicicleta">Bicicleta</option>
         </select><br>
         <input type="submit" name="opcion" value="Agregar">
-    </form>
+    </form> -->
+<div class="row">
+    <div  class="col-sm-3">
+    <div class="card text-bg-light mb-3 " style="max-width: 18rem;">
+        <div class="card-header">Modificar vehiculos</div>
+        <div class="card-body">
+        <form method="POST">
+        <input type="hidden" name="id" value="<?php echo $id;?>">
+        Numero de Serie actual:
+        <input class="form-control" id="floatingPassword" type="text" name="nro_serie" value="<?php echo $nro_serie;?>" placeholder="nro_serie"><br>
+        Estado actual: <?php echo $estado;?>
+        <select name="estado"> 
+            <option value="bien" <?php echo ($estado=="bien")?"selected":""; ?> >Bien</option>
+            <option value="regular"  <?php echo ($estado=="regular")?"selected":""; ?> >Regular</option>
+            <option value="radiado" <?php echo ($estado=="radiado")?"selected":""; ?> >Radiado</option>
+        </select><br>
+        Posesion actual: <?php if($posesion == 0)echo "no"; else echo"si"; ?>
+        <select name="posesion">
+            <option value="si" <?php echo ($posesion==1)?"selected":""; ?> >Si</option>
+            <option value="no" <?php echo ($posesion==0)?"selected":""; ?> >No</option>
+        </select><br>
+        Tipo de movil actual: <?php echo $tipo_movil;?>
+        <select name="tipo_movil">
+            <option value="auto" <?php echo ($tipo_movil=="auto")?"selected":""; ?> >Auto</option>
+            <option value="camioneta" <?php echo ($tipo_movil=="camioneta")?"selected":""; ?> >Camioneta</option>
+            <option value="cuatriciclo" <?php echo ($tipo_movil=="cuatriciclo")?"selected":""; ?> >Cuatriciclo</option>
+            <option value="bicicleta" <?php echo ($tipo_movil=="bicicleta")?"selected":""; ?> >Bicicleta</option>
+        </select><br>
+        Descripcion actual:<br>
+        <textarea name="descripcion" cols="25" rows="10" maxlength="250"><?php echo $descripcion;?></textarea><br>
+        <input class="btn btn-primary btn-sm boton" type="submit" name="opcion" value="Modificar">
 
+    </form>
+         </div>
+    </div>
+    </div>
+    <div class="col-sm-3">
+    <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+    <div class="card-header">Agregar vehiculos</div>
+    <div class="card-body">
+    <form method="POST">
+        Numero de Serie:
+        <input class="form-control" id="floatingPassword" type="text" name="nro_serie" placeholder="nro_serie"><br>
+        Estado: 
+        <select name="estado"> 
+            <option value="bien" >Bien</option>
+            <option value="regular" >Regular</option>
+            <option value="radiado" >Radiado</option>
+        </select><br>
+        Posesion: 
+        <select name="posesion">
+            <option value="si">Si</option>
+            <option value="no" selected>No</option>
+        </select><br>
+        Tipo de movil:
+        <select name="tipo_movil">
+            <option value="auto">Auto</option>
+            <option value="camioneta">Camioneta</option>
+            <option value="cuatriciclo">Cuatriciclo</option>
+            <option value="bicicleta">Bicicleta</option>
+        </select><br>
+        <input class="btn btn-primary btn-sm boton" type="submit" name="opcion" value="Agregar">
+    </form>
+    </div>
+    </div>
+    </div>
+</div>
 </body>
 </html>

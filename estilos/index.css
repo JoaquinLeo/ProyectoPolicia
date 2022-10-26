@@ -5,12 +5,3 @@
 body {
   background-color: whitesmoke;
 }
-.roberto{
-  top: 230px;
-  position: relative;
-}
-.carlos{
-  width: 300px;
-  display: flex;
-  margin: 0 auto;
-}
