@@ -25,17 +25,25 @@
     include("cabeceraA.php");
 
 ?>
+    <!-- <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css"></link>
 
-    <table border="1">
+    </head> -->
+
+   <div class="container mt-4"> 
+    <table id="present" class="table table-striped display responsive nowrap" style="width:100%">
         <caption>Presentismo</caption>
         <tr>
-            <td>Nombre</td> 
-            <td>Apellido</td> 
-            <td>Legajo</td> 
-            <td>Tipo de Movil</td> 
-            <td>Numero de Serie</td> 
-            <td>Estado</td>
-            <td>Fecha</td>
+            <th>Nombre</th> 
+            <th>Apellido</th> 
+            <th>Legajo</th> 
+            <th>Tipo de Movil</th> 
+            <th>Numero de Serie</th> 
+            <th>Estado</th>
+            <th>Fecha</th>
         </tr>
     <?php
         while ($mostrar = mysqli_fetch_array($rta))
@@ -55,7 +63,18 @@
     ?>
 
     </table>
-    
+    </div>
 
+        <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $('#present').DataTable();
+        });
+        </script> -->
+
+    
 </body>
 </html>

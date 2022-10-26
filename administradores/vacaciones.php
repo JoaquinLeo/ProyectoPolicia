@@ -218,7 +218,55 @@
     <?php if(isset($_REQUEST['opcion']) && $_REQUEST['opcion']=="Seleccionar"){?>
 
     <br><br>
-    <form method="POST">
+
+        <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+        <form method="POST">
+        <h3>Editar Vacaciones</h3>
+        <input type="hidden" name="vacaciones_id" value="<?php echo $vacacionesId;?>">
+        <input type="hidden" name="policia_id" value="<?php echo $policiaId;?>">
+        
+        Nombre: <?php echo $nombre ?><br>
+        
+        Apellido: <?php echo $apellido;?><br>
+
+        Legajo: <?php echo $legajo;?><br>
+
+        Fecha Inicio: <?php echo $fechainicio;?><br>
+
+        Fecha Fin: <?php echo $fechafin;?><br>
+
+        Estado: <?php echo $estado;?>
+        
+        <select name="estado"> 
+            <?php 
+                if($estado == "rechazado"){
+            ?>
+            <option value="aceptado" >Aceptar</option>
+            <?php 
+                }
+                else{
+            ?>
+            <option value="rechazado" >Rechazar</option>
+            <?php 
+                }
+            ?>
+        </select><br>
+
+        Dias Vacaciones: <?php echo $diasVacaciones;?><br>
+        <input type="hidden" name="dias_vacaciones"  value="<?= $diasVacaciones; ?>">
+
+        Dias Pedidos: <?php echo diasPedidos($fechainicio, $fechafin);?><br>
+        <input type="hidden" name="dias_pedidos"  value="<?= diasPedidos($fechainicio, $fechafin); ?>">
+
+        <input class="btn btn-primary btn-sm boton" type="submit" name="opcion" value="Modificar">
+    </form>
+        </div>
+    </div>
+    <?php }?>
+
+    <!-- <form method="POST">
         <h3>Editar Vacaciones</h3>
         <input type="hidden" name="vacaciones_id" value="<?php echo $vacacionesId;?>">
         <input type="hidden" name="policia_id" value="<?php echo $policiaId;?>">
@@ -257,8 +305,7 @@
         <input type="hidden" name="dias_pedidos"  value="<?= diasPedidos($fechainicio, $fechafin); ?>">
 
         <input type="submit" name="opcion" value="Modificar">
-    </form>
-    <?php }?>
+    </form> -->
 
 </body>
 </html>
