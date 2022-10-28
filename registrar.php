@@ -1,13 +1,20 @@
 <?php
 
+    /* Comprobación para verificar si se presionó el boton de enviar */
     if(isset($_REQUEST['enviar'])){
 
+        /* Conexion a la base de datos */
         include("conexion.php");
+
+        /* 6) Inserción de los datos enviados en el formulario de registro en la base de datos  */
         $sql="INSERT into policias(nombre,apellido,legajo,nivel_usuario,estado,servicio,años_servicio,dias_vacaciones) values 
         ('$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[legajo]','noadmin','espera','no',0,20)";
         
         mysqli_query($conexion,$sql)
         or die("Problemas en el select".mysqli_error($conexion));
+        /* --------------------------------------------------------- */
+
+        /* Cerrar conexion a la base de datos */
         mysqli_close($conexion);
 
         $var = "Muchas gracias! Registro con exito.";
@@ -15,9 +22,12 @@
         echo "<script>setTimeout( function() { window.location.href = 'index.php'; }, 10 ); </script>";
     }
 
+    /* Inclusión de la cabecera */
     include("cabeceraI.php");
 ?>
+
     <main class="form-signin w-100 m-auto">
+        <!-- Formulario para registrarse en el sistema -->
         <form method="POST">
             <h1 class="h3 mb-3 fw-normal">Sistema de Gestión Electrónico Policia BA</h1>
             <div class="form-floating">
@@ -32,15 +42,12 @@
                  <input type="password" name="legajo" class="form-control" id="floatingPassword" placeholder="Legajo" required>
                 <label for="floatingPassword">Legajo</label>
             </div>
-            <!-- <select class="form-select" name="nivel_usuario">
-                <option value="noadmin">No Admin</option>
-                <option value="admin">Admin</option>
-            </select> -->
             <button class="btn btn-primary btn-lg boton" type="Sumbit" value="Enviar" name="enviar" >Enviar</button>
             <button class="btn btn-primary btn-lg boton" type="button" value="Volver" onclick='volver()'>Volver</button>
         </form>
     </main>
-    <script>
+    <!--  X) Función con javascipt para poder ir a index evitando los "required" del formulario    -->
+    <script> 
         function volver(){
             location.href = "index.php";
         }

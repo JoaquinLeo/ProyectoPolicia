@@ -1,4 +1,6 @@
 <?php
+
+    /* componente para conectarse a la base de datos del sistema */
     $dbhost = "localhost";
     $dbuser = "root";
     $dbpass = "";

@@ -6,7 +6,7 @@ Corto plazo
 
 3. No radiados en el presentismo . LISTO
 
-4. Mostrar previsualizacion de la imagen y una descripcion 
+4. Mostrar previsualizacion de la imagen y una descripcion . LISTO
 
 5. Mostrar mas grandes las imagenes . LISTO
 
