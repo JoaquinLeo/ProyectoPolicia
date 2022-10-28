@@ -25,17 +25,10 @@
     include("cabeceraA.php");
 
 ?>
-    <!-- <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"></link>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"></link>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css"></link>
-
-    </head> -->
-
-   <div class="container mt-4"> 
-    <table id="present" class="table table-striped display responsive nowrap" style="width:100%">
+    <div class="container mx-auto my-4">
+    <table id="historial" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
         <caption>Presentismo</caption>
+        <thead>
         <tr>
             <th>Nombre</th> 
             <th>Apellido</th> 
@@ -45,6 +38,8 @@
             <th>Estado</th>
             <th>Fecha</th>
         </tr>
+        <thead>
+        <tbody>
     <?php
         while ($mostrar = mysqli_fetch_array($rta))
         {
@@ -61,20 +56,30 @@
     <?php    
         }
     ?>
-
+    </tbody>
     </table>
     </div>
 
-        <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
-        <script type="text/javascript">
-        $(document).ready(function () {
-            $('#present').DataTable();
-        });
-        </script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () { 
+            $('#historial').DataTable({
+                "language":{
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
 
+                    "lengthMenu": "Mostrar de a _MENU_ registros",
+
+                }
+                
+            });
+        
+        
+        });
+    </script>
     
 </body>
 </html>

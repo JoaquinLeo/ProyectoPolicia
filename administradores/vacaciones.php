@@ -165,24 +165,28 @@
 ?>
 
 
-
-    <table border="1">
-        <caption>Vacaciones</caption>
-        <tr>
-            <td>Nombre</td> 
-            <td>Apellido</td> 
-            <td>Legajo</td> 
-            <td>Fecha de Inicio</td> 
-            <td>Fecha de Fin</td>
-            <td>Estado</td>
-            <td>Dias pedidos</td> 
-            <td>Dias disponibles</td>    
-            <td>Opciones</td>
-        </tr>
+<div class="container mx-auto my-4">
+<table id="vacaciones" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
+        <thead>
+            <tr>
+                <td>Nombre</td> 
+                <td>Apellido</td> 
+                <td>Legajo</td> 
+                <td>Fecha de Inicio</td> 
+                <td>Fecha de Fin</td>
+                <td>Estado</td>
+                <td>Dias pedidos</td> 
+                <td>Dias disponibles</td>    
+                <td>Opciones</td>
+            </tr>
+        </thead>
+        
+        <tbody>   
     <?php
         while ($mostrar = mysqli_fetch_array($rta))
         {
     ?>
+        
         <tr>
             <td> <?php echo $mostrar['nombre'] ?> </td> 
             <td> <?php echo $mostrar['apellido'] ?> </td> 
@@ -202,65 +206,72 @@
                     <input type="hidden" name="policia_id"  value="<?= $mostrar['policia_id'] ?>">
                     <input type="hidden" name="dias_vacaciones"  value="<?= $mostrar['dias_vacaciones'] ?>">
                     <input type="hidden" name="dias_pedidos"  value="<?= diasPedidos($mostrar['fecha_inicio'], $mostrar['fecha_fin']); ?>">
-                    <input type="submit" name="opcion" <?php echo ($mostrar['estado']!="espera")?"disabled":"";  ?> value="Aceptar">
-                    <input type="submit" name="opcion" <?php echo ($mostrar['estado']!="espera")?"disabled":"";  ?> value="Rechazar">
-                    <input type="submit" name="opcion" <?php echo ($mostrar['estado']=="espera")?"disabled":"";  ?> value="Seleccionar">
-                    <input type="submit" name="opcion" value="Borrar">
+                    <input class="btn btn-outline-secondary btn-sm" type="submit" name="opcion" <?php echo ($mostrar['estado']!="espera")?"disabled":"";  ?> value="Aceptar">
+                    <input class="btn btn-outline-secondary btn-sm" type="submit" name="opcion" <?php echo ($mostrar['estado']!="espera")?"disabled":"";  ?> value="Rechazar">
+                    <input class="btn btn-secondary btn-sm" type="submit" name="opcion" <?php echo ($mostrar['estado']=="espera")?"disabled":"";  ?> value="Seleccionar">
+                    <input class="btn btn-danger btn-sm" type="submit" name="opcion" value="Borrar">
                 </form>     
             </td>
         </tr>
-    <?php    
+        <?php    
         }
-    ?>
+        ?>
+        </tbody>
 
     </table>
-
+    </div>
     <?php if(isset($_REQUEST['opcion']) && $_REQUEST['opcion']=="Seleccionar"){?>
 
     <br><br>
 
-        <div class="card text-bg-light mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
+        <div class="card text-bg-light mx-auto" style="max-width: 18rem;">
+        <div class="card-header fs-5 fw-bold">Editar Vacaciones</div>
         <div class="card-body">
         <form method="POST">
-        <h3>Editar Vacaciones</h3>
         <input type="hidden" name="vacaciones_id" value="<?php echo $vacacionesId;?>">
         <input type="hidden" name="policia_id" value="<?php echo $policiaId;?>">
-        
-        Nombre: <?php echo $nombre ?><br>
-        
-        Apellido: <?php echo $apellido;?><br>
-
-        Legajo: <?php echo $legajo;?><br>
-
-        Fecha Inicio: <?php echo $fechainicio;?><br>
-
-        Fecha Fin: <?php echo $fechafin;?><br>
-
-        Estado: <?php echo $estado;?>
-        
-        <select name="estado"> 
+        <div class="d-flex">
+        <p class="fs-6 fw-semibold me-1">Nombre:</p> <?php echo $nombre ?>
+        </div>
+        <div class="d-flex">
+        <p class="fs-6 fw-semibold me-1">Apellido:</p> <?php echo $apellido;?>
+        </div>
+        <div class="d-flex">
+        <p class="fs-6 fw-semibold me-1">Legajo:</p> <?php echo $legajo;?>
+        </div>
+        <div class="d-flex">
+        <p class="fs-6 fw-semibold me-1">Fecha Inicio:</p> <?php echo $fechainicio;?>
+        </div>
+        <div class="d-flex">
+        <p class="fs-6 fw-semibold me-1">Fecha Fin:</p> <?php echo $fechafin;?>
+        </div>
+        <div class="d-flex">
+        <p class="fs-6 fw-semibold me-1">Estado Actual:</p> <?php echo $estado;?>
+        </div>
+        <select class="form-select" name="estado">
+            <option selected disabled>Cambiar a</option> 
             <?php 
                 if($estado == "rechazado"){
             ?>
-            <option value="aceptado" >Aceptar</option>
+            <option value="aceptado" >Aceptado</option>
             <?php 
                 }
-                else{
+                else{ 
             ?>
-            <option value="rechazado" >Rechazar</option>
+            <option value="rechazado" >Rechazado</option>
             <?php 
                 }
             ?>
-        </select><br>
-
-        Dias Vacaciones: <?php echo $diasVacaciones;?><br>
+        </select>
+        <div class="d-flex mt-3">
+        <p class="fs-6 fw-semibold me-1">Dias Vacaciones:</p> <?php echo $diasVacaciones;?>
         <input type="hidden" name="dias_vacaciones"  value="<?= $diasVacaciones; ?>">
-
-        Dias Pedidos: <?php echo diasPedidos($fechainicio, $fechafin);?><br>
+        </div>
+        <div class="d-flex">
+        <p class="fs-6 fw-semibold me-1">Dias Pedidos:</p> <?php echo diasPedidos($fechainicio, $fechafin);?>
         <input type="hidden" name="dias_pedidos"  value="<?= diasPedidos($fechainicio, $fechafin); ?>">
-
-        <input class="btn btn-primary btn-sm boton" type="submit" name="opcion" value="Modificar">
+        </div>
+        <input class="btn btn-primary btn-sm " type="submit" name="opcion" value="Modificar">
     </form>
         </div>
     </div>
@@ -306,6 +317,27 @@
 
         <input type="submit" name="opcion" value="Modificar">
     </form> -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () { 
+            $('#vacaciones').DataTable({
+                "language":{
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
+
+                    "lengthMenu": "Mostrar de a _MENU_ registros",
+
+                }
+                
+            });
+        
+        
+        });
+    </script>
 
 </body>
 </html>

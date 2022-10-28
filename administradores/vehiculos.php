@@ -81,9 +81,10 @@
     include("cabeceraA.php");
 
 ?>
-
-    <table>
+<div class="container mx-auto my-4">
+    <table id="vehiculos" class="table table-striped dt-responsive nowrap border border-dark" style="width:100%">
         <caption>Moviles</caption>
+        <thead>
         <tr>
             <td>Numero</td> 
             <td>Numero de Serie</td> 
@@ -92,6 +93,8 @@
             <td>Posesion</td> 
             <td>Opciones</td>
         </tr>
+        <thead>
+        <tbody>
     <?php
         while ($mostrar = mysqli_fetch_array($rta))
         {
@@ -114,8 +117,8 @@
             <td>
                 <form method="POST">
                     <input type="hidden" name="id"  value="<?= $mostrar['movil_id'] ?>">
-                    <input type="submit" name="opcion" value="Seleccionar">
-                    <input type="submit" name="opcion" value="Borrar">
+                    <input class="btn btn-secondary btn-sm" type="submit" name="opcion" value="Seleccionar">
+                    <input class="btn btn-danger btn-sm" type="submit" name="opcion" value="Borrar">
                 </form>     
             </td>
         </tr>
@@ -123,9 +126,9 @@
         $numero++;
         }
     ?>
-
+    </tbody>
     </table>
-
+    </div>
     <!-- <form method="POST">
         <h3>Modificar vehiculos</h3>
         <input type="hidden" name="id" value="<?php echo $id;?>">
@@ -179,71 +182,103 @@
         </select><br>
         <input type="submit" name="opcion" value="Agregar">
     </form> -->
-<div class="row">
-    <div  class="col-sm-3">
-    <div class="card text-bg-light mb-3 " style="max-width: 18rem;">
-        <div class="card-header">Modificar vehiculos</div>
+<div class="container">
+    <div class="row justify-content-md-center">
+    <div  class="col col-md-auto">
+    <div class="card text-bg-light" style="max-width: 18rem;">
+        <div class="card-header fs-5 fw-bold">Modificar vehiculos</div>
         <div class="card-body">
         <form method="POST">
         <input type="hidden" name="id" value="<?php echo $id;?>">
-        Numero de Serie actual:
-        <input class="form-control" id="floatingPassword" type="text" name="nro_serie" value="<?php echo $nro_serie;?>" placeholder="nro_serie"><br>
-        Estado actual: <?php echo $estado;?>
-        <select name="estado"> 
+        <p class="fs-6 fw-semibold me-1 mb-1">Numero de Serie actual:</p>
+        <input class="form-control mb-4" id="floatingPassword" type="text" name="nro_serie" value="<?php echo $nro_serie;?>" placeholder="nro_serie">
+        <div class="d-flex">
+        <p class="fs-6 fw-semibold me-1 mb-1">Estado actual:<P> <?php echo $estado;?>
+        </div>
+        <select class="form-select mb-4" name="estado"> 
             <option value="bien" <?php echo ($estado=="bien")?"selected":""; ?> >Bien</option>
             <option value="regular"  <?php echo ($estado=="regular")?"selected":""; ?> >Regular</option>
             <option value="radiado" <?php echo ($estado=="radiado")?"selected":""; ?> >Radiado</option>
-        </select><br>
-        Posesion actual: <?php if($posesion == 0)echo "no"; else echo"si"; ?>
-        <select name="posesion">
+        </select>
+        <div class="d-flex">
+        <p class="fs-6 fw-semibold me-1 mb-1">Posesion actual:</p> <?php if($posesion == 0)echo "no"; else echo"si"; ?>
+        </div>
+        <select class="form-select mb-4" name="posesion">
             <option value="si" <?php echo ($posesion==1)?"selected":""; ?> >Si</option>
             <option value="no" <?php echo ($posesion==0)?"selected":""; ?> >No</option>
-        </select><br>
-        Tipo de movil actual: <?php echo $tipo_movil;?>
-        <select name="tipo_movil">
+        </select>
+        <div class="d-flex">
+        <p class="fs-6 fw-semibold me-1 mb-1">Tipo de movil actual:</p><?php echo $tipo_movil;?>
+        </div>
+        <select class="form-select mb-4" name="tipo_movil">
             <option value="auto" <?php echo ($tipo_movil=="auto")?"selected":""; ?> >Auto</option>
             <option value="camioneta" <?php echo ($tipo_movil=="camioneta")?"selected":""; ?> >Camioneta</option>
             <option value="cuatriciclo" <?php echo ($tipo_movil=="cuatriciclo")?"selected":""; ?> >Cuatriciclo</option>
             <option value="bicicleta" <?php echo ($tipo_movil=="bicicleta")?"selected":""; ?> >Bicicleta</option>
-        </select><br>
-        Descripcion actual:<br>
-        <textarea name="descripcion" cols="25" rows="10" maxlength="250"><?php echo $descripcion;?></textarea><br>
+        </select>
+        <p class="fs-6 fw-semibold me-1 mb-1">Descripcion actual:</p>
+        <div class="form-floating mb-4">
+        <textarea class="form-control" name="descripcion" cols="25" rows="10" maxlength="250"><?php echo $descripcion;?></textarea>
+         </div>
         <input class="btn btn-primary btn-sm boton" type="submit" name="opcion" value="Modificar">
 
     </form>
          </div>
     </div>
     </div>
-    <div class="col-sm-3">
-    <div class="card text-bg-light mb-3" style="max-width: 18rem;">
-    <div class="card-header">Agregar vehiculos</div>
+    <div class="col col-md-auto">
+    <div class="card text-bg-light" style="max-width: 18rem;">
+    <div class="card-header fs-5 fw-bold">Agregar vehiculos</div>
     <div class="card-body">
     <form method="POST">
-        Numero de Serie:
-        <input class="form-control" id="floatingPassword" type="text" name="nro_serie" placeholder="nro_serie"><br>
-        Estado: 
-        <select name="estado"> 
+    <p class="fs-6 fw-semibold me-1 mb-1">Numero de Serie:</p>
+        <input class="form-control mb-4" id="floatingPassword" type="text" name="nro_serie" placeholder="nro_serie" required>
+        <p class="fs-6 fw-semibold me-1 mb-1">Estado:</p>
+        <select class="form-select mb-4" name="estado"> 
             <option value="bien" >Bien</option>
             <option value="regular" >Regular</option>
             <option value="radiado" >Radiado</option>
-        </select><br>
-        Posesion: 
-        <select name="posesion">
+        </select>
+        <p class="fs-6 fw-semibold me-1 mb-1">Posesion:</p>
+        <select class="form-select mb-4" name="posesion">
             <option value="si">Si</option>
             <option value="no" selected>No</option>
-        </select><br>
-        Tipo de movil:
-        <select name="tipo_movil">
+        </select>
+        <p class="fs-6 fw-semibold me-1 mb-1">Tipo de movil:</p>
+        <select class="form-select mb-4" name="tipo_movil">
             <option value="auto">Auto</option>
             <option value="camioneta">Camioneta</option>
             <option value="cuatriciclo">Cuatriciclo</option>
             <option value="bicicleta">Bicicleta</option>
-        </select><br>
-        <input class="btn btn-primary btn-sm boton" type="submit" name="opcion" value="Agregar">
+        </select>
+        <input class="btn btn-primary btn-sm " type="submit" name="opcion" value="Agregar">
     </form>
     </div>
     </div>
     </div>
-</div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () { 
+            $('#vehiculos').DataTable({
+                "language":{
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
+
+                    "lengthMenu": "Mostrar de a _MENU_ registros",
+
+                }
+                
+            });
+        
+        
+        });
+    </script>
+
 </body>
 </html>

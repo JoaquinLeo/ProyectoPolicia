@@ -67,17 +67,17 @@
     include("cabeceraU.php");
 
 ?>
-    <p>Bienvenido <?php echo $_SESSION['usuario'] ?></p>
+    <p class="display-3 text-start m-3">Bienvenido <?php echo $_SESSION['usuario'] ?></p>
 
     <?php 
         if($mostrar['servicio']=="si") {
-            echo "<p>Usted ya esta en servicio</p>";
+            echo "<p class='fs-5 fw-light text-start m-3'>Usted ya esta en servicio</p>";
             ?>     
             <form method="POST">
-                <input type="submit" value="Dejar servicio" name="servicio">
+                <input class="btn btn-primary m-3" type="submit" value="Dejar servicio" name="servicio">
             </form>
         <?php }
-        else echo "<p>Usted aun no esta en servicio</p>";
+        else echo "<p class='fs-5 fw-light text-start m-3'>Usted aun no esta en servicio</p>";
     ?>   
 </body>
 </html>

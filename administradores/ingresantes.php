@@ -112,21 +112,21 @@
 ?>
 
 
- 
-    <table id="tabla">
+ <div class="container mx-auto my-4"> 
+    <table id="ingresantes" class="table table-striped dt-responsive nowrap border border-dark" style="width:100%">
 
         <caption>Ingresantes</caption>
         <thead>
             <tr>
-                <td>Nombre</td> 
-                <td>Apellido</td> 
-                <td>Legajo</td> 
-                <td>Nivel de usuario</td> 
-                <td>Estado</td>
-                <td>Opciones</td>
+                <th>Nombre</th> 
+                <th>Apellido</th> 
+                <th>Legajo</th> 
+                <th>Nivel de usuario</th> 
+                <th>Estado</th>
+                <th>Opciones</th>
             </tr>
         </thead>
-        
+       <tbody> 
     <?php
         while ($mostrar = mysqli_fetch_array($rta))
         {
@@ -141,18 +141,19 @@
                 <form method="POST">
                     <input type="hidden" name="id"  value="<?= $mostrar['policia_id'] ?>">
                     <input type="hidden" name="estado"  value="<?= $mostrar['estado'] ?>">
-                    <input type="submit" name="opcion"  value="Aceptar">
-                    <input type="submit" name="opcion"  value="Rechazar">
-                    <input type="submit" name="opcion"  value="Seleccionar">
-                    <input type="submit" name="opcion"  value="Borrar">  
+                    <input class="btn btn-outline-success btn-sm" type="submit" name="opcion"  value="Aceptar">
+                    <input class="btn btn-outline-danger btn-sm" type="submit" name="opcion"  value="Rechazar">
+                    <input class="btn btn-secondary btn-sm" type="submit" name="opcion"  value="Seleccionar">
+                    <input class="btn btn-danger btn-sm" type="submit" name="opcion"  value="Borrar">  
                 </form> 
             </td>
         </tr>
     <?php    
         }
     ?>  
-
+    </tbody>
     </table> 
+    </div>
         
     <!-- <form method="POST">
         <h3>Editar policias</h3>
@@ -177,17 +178,17 @@
         ?>
         <input type="submit" name="opcion" value="Modificar">
     </form> -->
-    <div class="card text-bg-light mb-3" style="max-width: 18rem;">
-        <div class="card-header">Editar policias</div>
+    <div class="card text-bg-light mx-auto" style="max-width: 18rem;">
+        <div class="card-header fs-5 fw-bold">Editar Policias</div>
         <div class="card-body">
         <form method="POST">
-        <input type="hidden" name="id" value="<?php echo $id;?>"><br>
-        Nombre:
-        <input class="form-control" id="floatingPassword"  type="text" name="nombre" value="<?php echo $nombre;?>" placeholder="nombre"><br>
-        Apellido:
-        <input class="form-control" id="floatingPassword"  type="text" name="apellido" value="<?php echo $apellido;?>" placeholder="apellido"><br>
-        Legajo:
-        <input class="form-control" id="floatingPassword"  type="text" name="legajo" value="<?php echo $legajo;?>" placeholder="legajo"><br>
+        <input type="hidden" name="id" value="<?php echo $id;?>">
+        <p class="fs-6 fw-semibold mb-1">Nombre:</p>
+        <input class="form-control mb-4" id="floatingPassword"  type="text" name="nombre" value="<?php echo $nombre;?>" placeholder="nombre">
+        <p class="fs-6 fw-semibold mb-1">Apellido:</p>
+        <input class="form-control mb-4" id="floatingPassword"  type="text" name="apellido" value="<?php echo $apellido;?>" placeholder="apellido">
+        <p class="fs-6 fw-semibold mb-1">Legajo:</p>
+        <input class="form-control mb-4" id="floatingPassword"  type="text" name="legajo" value="<?php echo $legajo;?>" placeholder="legajo">
         <?php if($_SESSION["nivel_usuario"]== "superadm"){?>
         Nivel de usuario:
         <select name="nivel_usuario">
@@ -200,10 +201,31 @@
         <?php 
             }
         ?>
-        <input class="btn btn-primary btn-sm boton" type="submit" name="opcion" value="Modificar">
+        <input class="btn btn-primary btn-sm " type="submit" name="opcion" value="Modificar">
      </form>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () { 
+            $('#ingresantes').DataTable({
+                "language":{
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
+
+                    "lengthMenu": "Mostrar de a _MENU_ registros",
+
+                }
+                
+            });
+        
+        
+        });
+    </script>
     
 </body>
 </html>

@@ -72,17 +72,20 @@
 ?>
 
 
-
-        <table border="1">
+    <div class="container mx-auto my-4">
+        <table id="moviles" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
         <caption>Moviles Policiales</caption>
+        <thead>
             <tr>
-                <td>Numero</td> 
-                <td>Nro Serie</td> 
-                <td>Tipo de Movil</td> 
-                <td>Estado</td>  
-                <td>Funcion</td> 
-                <td>Opciones</td> 
+                <th>Numero</th> 
+                <th>Nro Serie</th> 
+                <th>Tipo de Movil</th> 
+                <th>Estado</th>  
+                <th>Funcion</th> 
+                <th>Opciones</th> 
             </tr>
+        </thead>
+        <tbody>
             <?php  
                 $contador=1;
                 while($mostrar = mysqli_fetch_array($rta)){
@@ -100,7 +103,7 @@
                             <?php
                                 if($mostrar['posesion']==0){
                             ?> 
-                            <select name="funcion">
+                            <select class="form-select w-75" name="funcion">
                                 <option value="chofer">Chofer</option>
                                 <option value="acompañante">Acompañante</option>
                             </select> 
@@ -130,7 +133,7 @@
                                 <input type="hidden" name="estado"  value="<?= $mostrar['estado'] ?>">
                                 <input type="hidden" name="movil_id"  value="<?= $mostrar['movil_id'] ?>">
                                 <input type="hidden" name="posesion"  value="<?= $mostrar['posesion'] ?>">
-                                <input type="submit" value="seleccionar" name="seleccionar">
+                                <input class="btn btn-secondary" type="submit" value="seleccionar" name="seleccionar">
                             <?php
                                 }
                             ?>
@@ -144,8 +147,30 @@
                 $contador++;
                 }
             ?>
-        </table>
-
+        </tbody>
+    </table>
+</div>
     
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () { 
+            $('#moviles').DataTable({
+                "language":{
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
+
+                    "lengthMenu": "Mostrar de a _MENU_ registros",
+
+                }
+                
+            });
+        
+        
+        });
+    </script>
+
 </body>
 </html>
