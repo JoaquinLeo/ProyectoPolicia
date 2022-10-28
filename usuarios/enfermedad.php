@@ -25,7 +25,7 @@
                 </div>
                 <p class="fs-6 fw-semibold mb-1">Ingrese su certificado:</p>
                 <div class="input-group mb-3">
-                    <input type="file" name="certificado" required class="form-control" id="inputGroupFile02">
+                    <input type="file" name="certificado" required class="form-control" id="inputGroupFile02" accept="image/*">
                     <label class="input-group-text" for="inputGroupFile02">Upload</label>
                 </div>
                     <input class="btn btn-primary" type="submit" value="Enviar" name="enviar">
@@ -35,6 +35,33 @@
         </div>
     </div>   
 </div>
+
+<div class="text-center mt-2">
+    <img class="mg-fluid img-thumbnail"  height="350" width="350" id="imagenPrevisualizacion">
+<div>
+
+<script>
+
+const $inputGroupFile02 = document.querySelector("#inputGroupFile02"),
+  $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
+
+
+$inputGroupFile02.addEventListener("change", () => {
+
+  const archivos = $inputGroupFile02.files;
+
+  if (!archivos || !archivos.length) {
+    $imagenPrevisualizacion.src = "";
+    return;
+  }
+
+  const primerArchivo = archivos[0];
+
+  const objectURL = URL.createObjectURL(primerArchivo);
+
+  $imagenPrevisualizacion.src = objectURL;
+});
+</script>
 
 </body>
 </html>
