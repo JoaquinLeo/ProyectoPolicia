@@ -163,6 +163,7 @@
     include("cabeceraA.php");
 
 ?>
+    <br>
 
 
 <div class="container mx-auto my-4">
@@ -277,37 +278,25 @@
     </div>
     <?php }?>
 
-    <!-- <form method="POST">
-        <h3>Editar Vacaciones</h3>
-        <input type="hidden" name="vacaciones_id" value="<?php echo $vacacionesId;?>">
-        <input type="hidden" name="policia_id" value="<?php echo $policiaId;?>">
-        
-        Nombre: <?php echo $nombre ?><br>
-        
-        Apellido: <?php echo $apellido;?><br>
 
-        Legajo: <?php echo $legajo;?><br>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () { 
+            $('#vacaciones').DataTable({
+                "language":{
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
 
-        Fecha Inicio: <?php echo $fechainicio;?><br>
+                    "lengthMenu": "Mostrar de a _MENU_ registros",
 
-        Fecha Fin: <?php echo $fechafin;?><br>
-
-        Estado: <?php echo $estado;?>
-        
-        <select name="estado"> 
-            <?php 
-                if($estado == "rechazado"){
-            ?>
-            <option value="aceptado" >Aceptar</option>
-            <?php 
                 }
-                else{
-            ?>
-            <option value="rechazado" >Rechazar</option>
-            <?php 
-                }
-            ?>
-        </select><br>
+                
+            });
+        
+        
+        });
+    </script>
 
         Dias Vacaciones: <?php echo $diasVacaciones;?><br>
         <input type="hidden" name="dias_vacaciones"  value="<?= $diasVacaciones; ?>">
