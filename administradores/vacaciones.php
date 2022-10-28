@@ -168,17 +168,18 @@
 
 <div class="container mx-auto my-4">
 <table id="vacaciones" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
+        <caption>Vacaciones</caption>
         <thead>
             <tr>
-                <td>Nombre</td> 
-                <td>Apellido</td> 
-                <td>Legajo</td> 
-                <td>Fecha de Inicio</td> 
-                <td>Fecha de Fin</td>
-                <td>Estado</td>
-                <td>Dias pedidos</td> 
-                <td>Dias disponibles</td>    
-                <td>Opciones</td>
+                <th>Nombre</th> 
+                <th>Apellido</th> 
+                <th>Legajo</th> 
+                <th>Fecha de Inicio</td> 
+                <th>Fecha de Fin</th>
+                <th>Estado</th>
+                <th>Dias pedidos</th> 
+                <th>Dias disponibles</th>    
+                <th>Opciones</th>
             </tr>
         </thead>
         
@@ -279,33 +280,6 @@
     <?php }?>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-        $(document).ready(function () { 
-            $('#vacaciones').DataTable({
-                "language":{
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
-
-                    "lengthMenu": "Mostrar de a _MENU_ registros",
-
-                }
-                
-            });
-        
-        
-        });
-    </script>
-
-        Dias Vacaciones: <?php echo $diasVacaciones;?><br>
-        <input type="hidden" name="dias_vacaciones"  value="<?= $diasVacaciones; ?>">
-
-        Dias Pedidos: <?php echo diasPedidos($fechainicio, $fechafin);?><br>
-        <input type="hidden" name="dias_pedidos"  value="<?= diasPedidos($fechainicio, $fechafin); ?>">
-
-        <input type="submit" name="opcion" value="Modificar">
-    </form> -->
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
