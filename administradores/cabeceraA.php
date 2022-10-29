@@ -1,3 +1,5 @@
+<!-- cabecera de los administradores -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

@@ -3,6 +3,8 @@
     include("../sesion.php");
     /* Conexion a la base de datos */
     include("../conexion.php");
+    /* Control del tipo de usuario */
+    include("controlU.php");
 
     /* Consulta a la base de datos para traer y mostrar los cuatriciclos */
     $sql = "SELECT movil_id,nro_serie,tipo_movil,estado,posesion FROM moviles
@@ -32,25 +34,25 @@
         $insert="INSERT INTO presentismo(policia_id,movil_id,funcion,fecha,estado_movil) 
         values ('$id',$movil_id,'$funcion','$fecha', '$estado')";
         mysqli_query($conexion,$insert)
-        or die("Problemas en el select".mysqli_error($conexion));
+        or die("Problemas en el insert".mysqli_error($conexion));
         /* ------------------------------------------------- */
 
         /* Actualización del servicio del usuario en la base de datos (servicio -> si) */
         $update = "UPDATE policias SET servicio='si' WHERE policia_id='$id'";
         mysqli_query($conexion,$update)
-        or die("Problemas en el select".mysqli_error($conexion));
+        or die("Problemas en el update".mysqli_error($conexion));
         /* ------------------------------------------------- */ 
 
         /* Vinculación de la relación policia-vehiculo */
         $update2 = "UPDATE policia_movil SET movil_id='$movil_id' , funcion='$funcion' WHERE policia_id='$id'";
         mysqli_query($conexion,$update2)
-        or die("Problemas en el select".mysqli_error($conexion));
+        or die("Problemas en el update".mysqli_error($conexion));
         /* ------------------------------------------------- */ 
 
         /* Al cuatriciclo en cuestion se la actualiza con un 1 indicando que esta ocupado */             
         $update3 = "UPDATE moviles SET posesion = 1 WHERE movil_id = '$movil_id'";
         mysqli_query($conexion,$update3)
-        or die("Problemas en el select".mysqli_error($conexion));
+        or die("Problemas en el update".mysqli_error($conexion));
         /* ------------------------------------------------- */ 
 
         /* Alerta para indicar que el presente fue dado con existo */
@@ -63,6 +65,7 @@
     // 1) Inclusión de la cabecera (realizada en un componente aparte ya que es la misma para todo el sistema de usuarios )
     include("cabeceraU.php");
 ?>
+
     <div class="container mx-auto my-4">
         <!-- Tabla para mostrar los cuatriciclos --> 
         <table id="cuatriciclos" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
@@ -123,5 +126,7 @@
         });
     </script>        
     
-</body>
-</html>
+<?php
+    // 1) Inclusión del footer (realizado en un componente aparte ya que es la misma para todo el sistema de usuarios )
+    include("footerU.php");
+?>

@@ -3,6 +3,8 @@
     include("../sesion.php");
     /* Conexion a la base de datos */
     include("../conexion.php");
+    /* Control del tipo de usuario */
+    include("controlU.php");
 
     /* Consulta a la base de datos para saber si el usuario se encuenta en servicio o no */
     $id= $_SESSION["id"];
@@ -18,7 +20,7 @@
         /* Actualización en la base de datos (servicio -> no) */
         $update = "UPDATE policias SET servicio='no' WHERE policia_id='$id'";
         mysqli_query($conexion,$update)
-        or die("Problemas en el select".mysqli_error($conexion));
+        or die("Problemas en el update".mysqli_error($conexion));
         /* ------------------------------------------------------ */
 
         /* Consulta a la base de datos para saber que vehiculo esta utilizando el usuario y con que función */
@@ -46,13 +48,13 @@
                 $movil_id = $mostrar2['movil_id'];
                 $update2 = "UPDATE policia_movil SET movil_id = null , funcion= null WHERE policia_id='$id'";
                 mysqli_query($conexion,$update2)
-                or die("Problemas en el select".mysqli_error($conexion));
+                or die("Problemas en el update".mysqli_error($conexion));
                 /* --------------------------------------------------------------------------------- */
 
                 /* Al vehiculo en cuestion se lo actualiza con un 1 indicando que solo tiene chofer  */ 
                 $update3 = "UPDATE moviles SET posesion = 1 WHERE movil_id='$movil_id'";
                 mysqli_query($conexion,$update3)
-                or die("Problemas en el select".mysqli_error($conexion));
+                or die("Problemas en el update".mysqli_error($conexion));
                 /* --------------------------------------------------------------------------------- */
             }
                 /* Vehiculo liberado por el chofer */
@@ -61,13 +63,13 @@
                 $movil_id = $mostrar2['movil_id'];
                 $update2 = "UPDATE policia_movil SET movil_id = null , funcion= null WHERE policia_id='$id'";
                 mysqli_query($conexion,$update2)
-                or die("Problemas en el select".mysqli_error($conexion));
+                or die("Problemas en el update".mysqli_error($conexion));
                 /* --------------------------------------------------------------------------------- */
 
                 /* Al vehiculo en cuestion se lo actualiza con un 2 indicando que solo tiene acompañante  */ 
                 $update3 = "UPDATE moviles SET posesion = 2 WHERE movil_id='$movil_id'";
                 mysqli_query($conexion,$update3)
-                or die("Problemas en el select".mysqli_error($conexion));
+                or die("Problemas en el update".mysqli_error($conexion));
                 /* --------------------------------------------------------------------------------- */
             }
         }
@@ -77,13 +79,13 @@
                 $movil_id = $mostrar2['movil_id'];
                 $update2 = "UPDATE policia_movil SET movil_id = null , funcion= null WHERE policia_id='$id'";
                 mysqli_query($conexion,$update2)
-                or die("Problemas en el select".mysqli_error($conexion));
+                or die("Problemas en el update".mysqli_error($conexion));
                 /* --------------------------------------------------------------------------------- */
 
                 /* Al vehiculo en cuestion se lo actualiza con un 0 indicando que se encuentra vacio  */ 
                 $update3 = "UPDATE moviles SET posesion = 0 WHERE movil_id='$movil_id'";
                 mysqli_query($conexion,$update3)
-                or die("Problemas en el select".mysqli_error($conexion));
+                or die("Problemas en el update".mysqli_error($conexion));
                 /* --------------------------------------------------------------------------------- */
         }
         
@@ -113,6 +115,9 @@
         else {
              echo "<p class='fs-5 fw-light text-start m-3'>Usted aun no esta en servicio</p>";
         }
-    ?>   
-</body>
-</html>
+    ?>  
+     
+<?php
+    // 1) Inclusión del footer (realizado en un componente aparte ya que es la misma para todo el sistema de usuarios )
+    include("footerU.php");
+?>

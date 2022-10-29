@@ -3,6 +3,8 @@
     include("../sesion.php");
     /* Conexion a la base de datos */
     include("../conexion.php");
+    /* Control del tipo de usuario */
+    include("controlU.php");
 
     /* Consulta a la base de datos para traer y mostrar las bicicletas */
     $sql = "SELECT movil_id,nro_serie,tipo_movil,estado,posesion FROM moviles
@@ -32,32 +34,31 @@
         $insert="INSERT INTO presentismo(policia_id,movil_id,funcion,fecha,estado_movil) 
         values ('$id',$movil_id,'$funcion','$fecha', '$estado')";
         mysqli_query($conexion,$insert)
-        or die("Problemas en el select".mysqli_error($conexion));
+        or die("Problemas en el insert".mysqli_error($conexion));
         /* ------------------------------------------------- */
 
         /* Actualización del servicio del usuario en la base de datos (servicio -> si) */
         $update = "UPDATE policias SET servicio='si' WHERE policia_id='$id'";
         mysqli_query($conexion,$update)
-        or die("Problemas en el select".mysqli_error($conexion));
+        or die("Problemas en el update".mysqli_error($conexion));
         /* ------------------------------------------------- */ 
 
         /* Vinculación de la relación policia-vehiculo */
         $update2 = "UPDATE policia_movil SET movil_id='$movil_id' , funcion='$funcion' WHERE policia_id='$id'";
         mysqli_query($conexion,$update2)
-        or die("Problemas en el select".mysqli_error($conexion));
+        or die("Problemas en el update".mysqli_error($conexion));
         /* ------------------------------------------------- */ 
 
         /* A la bicicleta en cuestion se la actualiza con un 1 indicando que esta ocupada */ 
         $update3 = "UPDATE moviles SET posesion = 1 WHERE movil_id = '$movil_id'";
         mysqli_query($conexion,$update3)
-        or die("Problemas en el select".mysqli_error($conexion));
+        or die("Problemas en el update".mysqli_error($conexion));
         /* ------------------------------------------------- */ 
 
         /* Alerta para indicar que el presente fue dado con exito */
         $var = "Su presente fue dado con exito";
         echo "<script> alert('".$var."');</script>";
         echo "<script>setTimeout( function() { window.location.href = 'index.php'; }, 10 ); </script>";
-        
     }
 
     // 1) Inclusión de la cabecera (realizada en un componente aparte ya que es la misma para todo el sistema de usuarios )
@@ -124,5 +125,7 @@
         });
     </script>
 
-</body>
-</html>
+<?php
+    // 1) Inclusión del footer (realizado en un componente aparte ya que es la misma para todo el sistema de usuarios )
+    include("footerU.php");
+?>

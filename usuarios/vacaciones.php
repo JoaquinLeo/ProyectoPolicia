@@ -3,6 +3,8 @@
     include("../sesion.php");
     /* Conexion a la base de datos */
     include("../conexion.php");
+    /* Control del tipo de usuario */
+    include("controlU.php");
 
     /* Fijación de la zona horaria para trabajar con fechas */
     date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -23,7 +25,7 @@
         $sql = "INSERT INTO vacaciones (policia_id,fecha_inicio,fecha_fin,estado) 
         values ('$id','$finicio','$ffin','$estado')";
         mysqli_query($conexion,$sql) 
-        or die("Problemas en el select:".mysqli_error($conexion));
+        or die("Problemas en el insert:".mysqli_error($conexion));
         /* ---------------------------------------------------- */
 
         /* Alerta para indicar que se envió correctamente el pedido de vacaciones */
@@ -66,5 +68,7 @@
         </div>   
     </div>
 
-</body>
-</html>
+<?php
+    // 1) Inclusión del footer (realizado en un componente aparte ya que es la misma para todo el sistema de usuarios )
+    include("footerU.php");
+?>

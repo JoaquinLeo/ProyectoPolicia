@@ -3,7 +3,10 @@
     include("../sesion.php");
     /* Conexion a la base de datos */
     include("../conexion.php");
-    
+    /* Control del tipo de usuario */
+    include("controlU.php");
+
+    /* Condición para saber si envió el formulario */
     if(isset($_REQUEST['enviar']))
     {   
         /* Captura de los datos del formulario */
@@ -22,7 +25,7 @@
         $sql = "INSERT INTO enfermedad(policia_id,fecha,certificado) 
         values ('$id','$fecha','$imagen')";
         mysqli_query($conexion,$sql) 
-        or die("Problemas en el select:".mysqli_error($conexion));
+        or die("Problemas en el insert:".mysqli_error($conexion));
         /* ---------------------------------------------------- */
 
         /* Alerta para indicar que se insertó correctamente el certificado */
@@ -82,5 +85,7 @@
         });
     </script>
 
-</body>
-</html>
+<?php
+    // 1) Inclusión del footer (realizado en un componente aparte ya que es la misma para todo el sistema de usuarios )
+    include("footerU.php");
+?>

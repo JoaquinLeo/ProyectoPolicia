@@ -7,11 +7,10 @@
         include("conexion.php");
 
         /* 6) Inserción de los datos enviados en el formulario de registro en la base de datos */
-        $sql="INSERT into policias(nombre,apellido,legajo,nivel_usuario,estado,servicio,años_servicio,dias_vacaciones) values 
-        ('$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[legajo]','noadmin','espera','no',0,20)";
-        
+        $sql="INSERT into policias(nombre,apellido,legajo,nivel_usuario,estado,servicio,años_servicio,dias_vacaciones) 
+        values ('$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[legajo]','noadmin','espera','no',0,20)";
         mysqli_query($conexion,$sql)
-        or die("Problemas en el select".mysqli_error($conexion));
+        or die("Problemas en el insert".mysqli_error($conexion));
         /* --------------------------------------------------------- */
 
         /* Cerrar conexion a la base de datos */

@@ -3,6 +3,8 @@
     include("../sesion.php");
     /* Conexion a la base de datos */
     include("../conexion.php");
+    /* Control del tipo de usuario */
+    include("controlU.php");
 
     /* Asignación de variables */
     $movil="null";
@@ -20,13 +22,13 @@
     $insert="INSERT INTO presentismo(policia_id,movil_id,funcion,fecha,estado_movil) 
     values ('$id', NULL ,'$funcion','$fecha', NULL)";
     mysqli_query($conexion,$insert)
-    or die("Problemas en el select".mysqli_error($conexion));
+    or die("Problemas en el insert".mysqli_error($conexion));
     /* ------------------------------------------------- */
 
     /* Actualización del servicio del usuario en la base de datos (servicio -> si) */
     $update = "UPDATE policias SET servicio='si' WHERE policia_id='$id'";
     mysqli_query($conexion,$update)
-    or die("Problemas en el select".mysqli_error($conexion));
+    or die("Problemas en el update".mysqli_error($conexion));
     mysqli_close($conexion);
     /* ------------------------------------------------- */
 

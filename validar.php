@@ -11,9 +11,8 @@
     /* 6) Consulta a la base de datos para comprobar si existe el usuario que esta queriendo ingresar */
     $sql="SELECT policia_id , nombre , legajo , estado , nivel_usuario 
     FROM policias where nombre='$usuario' and legajo='$contrasenna' and estado='aceptado'";
-
-    $rta= mysqli_query($conexion,$sql) or
-    die("Problemas en el select:".mysqli_error($conexion));
+    $rta= mysqli_query($conexion,$sql) 
+    or die("Problemas en el select:".mysqli_error($conexion));
     /* ----------------------------------------------------------------------------------------- */
     
     

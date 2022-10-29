@@ -1,6 +1,8 @@
 <?php
     /* Validación de una sesión */
     include("../sesion.php");
+    /* Control del tipo de usuario */
+    include("controlU.php");
 
 
     /* Variable para recibir la funcion que va a llevar a cabo el usuario */
