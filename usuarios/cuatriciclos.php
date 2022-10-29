@@ -61,7 +61,7 @@
         echo "<script>setTimeout( function() { window.location.href = 'index.php'; }, 10 ); </script>";
         
     }
-
+    mysqli_close($conexion);
     // 1) Inclusión de la cabecera (realizada en un componente aparte ya que es la misma para todo el sistema de usuarios )
     include("cabeceraU.php");
 ?>

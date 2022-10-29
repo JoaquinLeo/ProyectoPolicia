@@ -12,7 +12,8 @@
     FROM enfermedad INNER JOIN policias on enfermedad.policia_id = policias.policia_id";
     $rta= mysqli_query($conexion,$sql) 
     or die("Problemas en el select:".mysqli_error($conexion));
-
+    mysqli_close($conexion);
+    /* ---------------------------------------------------------------- */
     // 1) Inclusión de la cabecera (realizada en un componente aparte ya que es la misma para todo el sistema de administradores )
     include("cabeceraA.php");
 ?>

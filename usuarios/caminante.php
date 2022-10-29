@@ -31,7 +31,7 @@
     or die("Problemas en el update".mysqli_error($conexion));
     mysqli_close($conexion);
     /* ------------------------------------------------- */
-
+    mysqli_close($conexion);
     /* Alerta para indicar que el presente fue dado con exito */
     $var= "Su presente fue dado con exito";
     echo  "<script> alert('".$var."');</script>";

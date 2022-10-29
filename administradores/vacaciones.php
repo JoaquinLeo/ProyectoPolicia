@@ -188,7 +188,7 @@
             break;
             /* -------------------------------------------------------- */
     }
-
+    mysqli_close($conexion);
     // 1) Inclusión de la cabecera (realizada en un componente aparte ya que es la misma para todo el sistema de administradores )
     include("cabeceraA.php");
 ?>
@@ -278,8 +278,10 @@
                 <div class="d-flex">
                     <p class="fs-6 fw-semibold me-1">Estado Actual:</p> <?php echo $estado;?>
                 </div>
+                <div class="d-flex">
+                    <p class="fs-6 fw-semibold me-1">Cambiar a:</p>
+                </div>
                     <select class="form-select" name="estado">
-                        <option selected disabled>Cambiar a</option> 
                         <?php 
                             if($estado == "rechazado"){
                         ?>

@@ -2,7 +2,7 @@
 
     /* componente para comprobar que los usuarios tienen su sesion abierta */    
     session_start(); 
-    error_reporting(0);
+    /* error_reporting(0); */
 
     $varsession = $_SESSION['usuario'];
     

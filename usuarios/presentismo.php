@@ -13,7 +13,7 @@
     die("Problemas en el select:".mysqli_error($conexion));
     $mostrar = mysqli_fetch_array($rta);
     /* --------------------------------------------------------------------------------- */
-
+    mysqli_close($conexion);
     // 1) Inclusión de la cabecera (realizada en un componente aparte ya que es la misma para todo el sistema de usuarios )
     include("cabeceraU.php");
 ?>

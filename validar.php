@@ -14,7 +14,7 @@
     $rta= mysqli_query($conexion,$sql) 
     or die("Problemas en el select:".mysqli_error($conexion));
     /* ----------------------------------------------------------------------------------------- */
-    
+    mysqli_close($conexion);
     
     /* 7) En caso de que mysqli_fetch_array retorne un vector asociativo la condición del if se verifica 
     (es decir que se encontro un usuario con los datos ingresados en el formulario), 
