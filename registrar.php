@@ -6,7 +6,7 @@
         /* Conexion a la base de datos */
         include("conexion.php");
 
-        /* 6) Inserción de los datos enviados en el formulario de registro en la base de datos  */
+        /* 6) Inserción de los datos enviados en el formulario de registro en la base de datos */
         $sql="INSERT into policias(nombre,apellido,legajo,nivel_usuario,estado,servicio,años_servicio,dias_vacaciones) values 
         ('$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[legajo]','noadmin','espera','no',0,20)";
         

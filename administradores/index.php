@@ -12,7 +12,7 @@
     date_default_timezone_set('America/Argentina/Buenos_Aires');
     $fecha = date("Y-m-d");
 
-    $sql = "SELECT policias.nombre , policias.apellido , policias.legajo , 
+    $sql = "SELECT policias.nombre , policias.apellido , policias.legajo ,
     COALESCE(moviles.tipo_movil,'-') AS tipo_movil , COALESCE(moviles.nro_serie,'-') AS nro_serie, 
     presentismo.funcion , presentismo.fecha , 
     COALESCE(presentismo.estado_movil,'-') AS estado_movil FROM policias 
@@ -35,38 +35,40 @@
     if(mysqli_fetch_row($rta)){
     ?>
     <div class="container mx-auto my-4">
-    <table id="index" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
-        <caption>Presentismo</caption>
-        <thead>
-        <tr>
-            <td>Nombre</td> 
-            <td>Apellido</td> 
-            <td>Legajo</td> 
-            <td>Tipo de Movil</td> 
-            <td>Numero de Serie</td> 
-            <td>Estado</td>
-            <td>Fecha</td>
-        </tr>
-    </thead>
-    <tbody>
-    <?php
-        while ($mostrar = mysqli_fetch_array($rta))
-        {
-    ?>
-        <tr>
-            <td> <?php echo $mostrar['nombre'] ?> </td> 
-            <td> <?php echo $mostrar['apellido'] ?> </td> 
-            <td> <?php echo $mostrar['legajo'] ?> </td> 
-            <td> <?php echo $mostrar['tipo_movil'] ?> </td> 
-            <td> <?php echo $mostrar['nro_serie'] ?> </td> 
-            <td> <?php echo $mostrar['estado_movil'] ?> </td> 
-            <td> <?php echo $mostrar['fecha'] ?> </td> 
-        </tr>
-    <?php    
-        }
-    ?>
-    <tbody>
-    </table>
+        <table id="index" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
+            <caption>Presentismo</caption>
+            <thead>
+                <tr>
+                    <td>Nombre</td> 
+                    <td>Apellido</td> 
+                    <td>Legajo</td> 
+                    <td>Funcion</td> 
+                    <td>Tipo de Movil</td> 
+                    <td>Numero de Serie</td> 
+                    <td>Estado</td>
+                    <td>Fecha</td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                while ($mostrar = mysqli_fetch_array($rta))
+                {
+                ?>
+                    <tr>
+                        <td> <?php echo $mostrar['nombre'] ?> </td> 
+                        <td> <?php echo $mostrar['apellido'] ?> </td> 
+                        <td> <?php echo $mostrar['legajo'] ?> </td> 
+                        <td> <?php echo $mostrar['funcion'] ?> </td> 
+                        <td> <?php echo $mostrar['tipo_movil'] ?> </td> 
+                        <td> <?php echo $mostrar['nro_serie'] ?> </td> 
+                        <td> <?php echo $mostrar['estado_movil'] ?> </td> 
+                        <td> <?php echo $mostrar['fecha'] ?> </td> 
+                    </tr>
+                <?php    
+                }
+                ?>
+            <tbody>
+        </table>
     </div>
     <?php    
         }

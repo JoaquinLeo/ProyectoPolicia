@@ -1,15 +1,18 @@
 <?php
+    /* Validación de una sesión */
     include("../sesion.php");
+    /* Conexion a la base de datos */
     include("../conexion.php");
-    
 
+    /* Consulta a la base de datos para saber si el usuario se encuenta en servicio o no */
     $id= $_SESSION["id"];
     $sql = "SELECT servicio FROM policias WHERE policia_id='$id'";
     $rta = mysqli_query($conexion,$sql) or 
     die("Problemas en el select:".mysqli_error($conexion));
     $mostrar = mysqli_fetch_array($rta);
-    /* <?php echo ($mostrar['servicio']=="si")?"disabled":""; ?> */
+    /* --------------------------------------------------------------------------------- */
 
+    // 1) Inclusión de la cabecera (realizada en un componente aparte ya que es la misma para todo el sistema de usuarios )
     include("cabeceraU.php");
 ?>
 
@@ -18,6 +21,7 @@
         <div class="card-header">
         </div>
         <div class="card-body">
+            <!-- Formulario para dar el presentismo -->
             <form method="POST" action="funcion.php">
                 <p class="fs-6 fw-semibold mb-1">Seleccionar:</p> 
                 <select class="form-select w-50 mb-4" name="funcion">
@@ -27,7 +31,9 @@
                     <option value="cuatriciclo">Cuatriciclos</option>
                 </select>
                 <input class="btn btn-primary" type="submit" value="siguiente" name="selecionar"
+                
                 <?php echo ($mostrar['servicio']=="si")?"disabled":"";  ?> >
+                <!-- Si el usuario se encuenta en servicio entonces se desactiva el envio del formulario -->
             </form>
         </div>
         <div class="card-footer text-muted">
