@@ -30,7 +30,7 @@
 ?>
 
 <!-- Tarjeta de Admin -->
-<div class="container mt-2" style="max-width: 450px">
+<div class="container mt-2 section-content" style="max-width: 450px">
         <div class="text-center" >
             <div class="cardlog">
                 <div class="card">

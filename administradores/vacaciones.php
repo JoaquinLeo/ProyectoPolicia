@@ -193,7 +193,7 @@
     include("cabeceraA.php");
 ?>
 
-    <div class="container mx-auto my-4">
+    <div class="container mx-auto my-4 section-content">
         <!-- Formulario para mostrar los pedidos de vacaciones --> 
         <table id="vacaciones" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
             <caption>Vacaciones</caption>
@@ -253,8 +253,8 @@
         if(isset($_REQUEST['opcion']) && $_REQUEST['opcion']=="Seleccionar"){
     ?>
         <br><br>
-<div class="content">
-        <div class="card text-bg-light mx-auto" style="max-width: 18rem;">
+    <div class="conteiner1 mb-4">
+        <div class="card text-bg-light mx-auto " style="max-width: 18rem;">
             <div class="card-header fs-5 fw-bold">Editar Vacaciones</div>
         <div class="card-body">
             <form method="POST">
@@ -307,7 +307,7 @@
             </form>
         </div>
         </div>
-</div>
+    </div>
     <?php 
         }
     ?>

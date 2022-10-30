@@ -101,7 +101,7 @@
     include("cabeceraA.php");
 ?>
 
-    <div class="container mx-auto my-4">
+    <div class="container mx-auto my-4 section-content">
         <table id="vehiculos" class="table table-striped dt-responsive nowrap border border-dark" style="width:100%">
             <caption>Moviles</caption>
             <thead>
@@ -152,7 +152,7 @@
         </table>
     </div>
     
-    <div class="container">
+    <div class="container mb-4">
         <div class="row justify-content-md-center">
             <div  class="col col-md-auto">
                 <div class="card text-bg-light" style="max-width: 18rem;">

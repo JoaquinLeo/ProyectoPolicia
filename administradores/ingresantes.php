@@ -134,7 +134,7 @@
 ?>
 
 
-    <div class="container mx-auto my-4">
+    <div class="container mx-auto my-4 section-content">
 
         <table id="ingresantes" class="table table-striped dt-responsive nowrap border border-dark" style="width:100%">
             <caption>Ingresantes</caption>
@@ -177,7 +177,7 @@
         </table> 
     </div>
         
-    <div class="card text-bg-light mx-auto" style="max-width: 18rem;">
+    <div class="card text-bg-light mx-auto mb-4" style="max-width: 18rem;">
         <div class="card-header fs-5 fw-bold">Editar Policias</div>
     <div class="card-body">
         <form method="POST">

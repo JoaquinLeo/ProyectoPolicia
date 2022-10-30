@@ -100,7 +100,7 @@
 ?>
 
 <!-- Tarjeta de usuario -->
-<div class="container mt-4" style="max-width: 450px">
+<div class="container mt-4 section-content" style="max-width: 450px">
         <div class="text-center" >
             <div class="cardlog">
                 <div class="card">
