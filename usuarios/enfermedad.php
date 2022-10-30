@@ -37,7 +37,7 @@
     // 1) Inclusión de la cabecera (realizada en un componente aparte ya que es la misma para todo el sistema de usuarios )
     include("cabeceraU.php");
 ?>
-
+<
     <div class="container mt-4" style="max-width: 800px">
         <div class="card border border-dark border-3 rounded" >
             <div class="card-header">
@@ -63,8 +63,8 @@
         </div>   
     </div>
 
-    <div class="text-center mt-2">
-        <img class="mg-fluid img-thumbnail"  height="350" width="350" id="imagenPrevisualizacion">
+    <div class="text-center mt-4 mb-10">
+        <img class="img-fluid img-thumbnail"  height="300" width="300" id="imagenPrevisualizacion">
     <div>
 
     <!-- Script para la previsualizacion del certificado -->    

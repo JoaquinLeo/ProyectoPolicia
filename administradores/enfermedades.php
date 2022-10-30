@@ -18,7 +18,7 @@
     include("cabeceraA.php");
 ?>
 
-    <div class="container mx-auto my-4">
+    <div class="container mx-auto my-4 section-content">
         <!-- Tabla para mostrar las enfermedades  -->       
         <table id="enfermedades" class="table table-striped dt-responsive nowrap border border-dark" style="width:100%">
             <caption>Enfermedades</caption>

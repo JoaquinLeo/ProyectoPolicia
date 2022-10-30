@@ -23,7 +23,7 @@
     include("cabeceraA.php");
 ?>
 
-    <div class="container mx-auto my-4">
+    <div class="container mx-auto my-4 section-content">
         <!-- Tabla para mostrar el historial del presentismo --> 
         <table id="historial" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
             <caption>Presentismo</caption>

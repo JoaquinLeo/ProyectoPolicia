@@ -38,7 +38,7 @@
     include("cabeceraU.php");
 ?>
 
-    <div class="container mt-4" style="max-width: 800px">
+    <div class="container mt-4 section-content" style="max-width: 800px">
         <div class="card border border-dark border-3 rounded" >
             <div class="card-header">
             </div>
