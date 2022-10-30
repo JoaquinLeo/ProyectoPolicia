@@ -1,9 +1,9 @@
 <?php
-    /* Validación de una sesión */
+    /* 20) Validación de una sesión */
     include("../sesion.php");
-    /* Conexion a la base de datos */
+    /* 5) Conexion a la base de datos */
     include("../conexion.php");
-    /* Control del tipo de usuario */
+    /* 21) Control del tipo de usuario */
     include("controlU.php");
 
     /* Consulta a la base de datos para traer y mostrar las bicicletas */

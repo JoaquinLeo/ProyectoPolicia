@@ -1,20 +1,19 @@
 <?php
-    /* Validación de una sesión */
+    /* 20) Validación de una sesión */
     include("../sesion.php");
-    /* Control del tipo de usuario */
+    /* 21) Control del tipo de usuario */
     include("controlU.php");
-
 
     /* Variable para recibir la funcion que va a llevar a cabo el usuario */
     $funcion = ($_REQUEST['funcion'])?$_REQUEST['funcion']:"";
 
     /* Dependiendo la funcion del usuario , se lo envia a una página u otra */
     switch($funcion){
-        case "movil" :
-            header("Location:moviles.php");
-            break;
         case "caminante" :
             header("Location:caminante.php");
+            break;
+        case "movil" :
+            header("Location:moviles.php");
             break;
         case "bicicleta" :
             header("Location:bicicletas.php");

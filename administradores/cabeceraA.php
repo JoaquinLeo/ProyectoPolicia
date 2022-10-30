@@ -44,7 +44,7 @@
                         <a class="nav-link" href="vehiculos.php">Vehiculos</a>
                     </li>
                     <li class="nav-item" >
-                        <a class="nav-link" href="../cerrar_session.php">Cerrar Sesion</a>
+                        <a class="nav-link" href="../cerrar_sesion.php">Cerrar Sesion</a>
                     </li>
                 </ul>
                 <span class="navbar-brand">

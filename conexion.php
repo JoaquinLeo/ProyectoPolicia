@@ -1,6 +1,5 @@
 <?php
-
-    /* componente para conectarse a la base de datos del sistema */
+    /* 19) Componente para conectarse a la base de datos del sistema */
     $dbhost = "localhost";
     $dbuser = "root";
     $dbpass = "";
@@ -12,5 +11,5 @@
     {
         die("No hay conexion: ".mysqli_connect_error());	
     }
-
 ?>
+
