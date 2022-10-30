@@ -29,7 +29,6 @@
     $update = "UPDATE policias SET servicio='si' WHERE policia_id='$id'";
     mysqli_query($conexion,$update)
     or die("Problemas en el update".mysqli_error($conexion));
-    mysqli_close($conexion);
     /* ------------------------------------------------- */
     mysqli_close($conexion);
     /* Alerta para indicar que el presente fue dado con exito */
