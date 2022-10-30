@@ -63,8 +63,8 @@
         </div>   
     </div>
 
-    <div class="text-center mt-2">
-        <img class="mg-fluid img-thumbnail"  height="350" width="350" id="imagenPrevisualizacion">
+    <div class="text-center mt-4">
+        <img class="img-fluid img-thumbnail"  height="300" width="300" id="imagenPrevisualizacion">
     <div>
 
     <!-- Script para la previsualizacion del certificado -->    

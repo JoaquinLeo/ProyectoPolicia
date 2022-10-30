@@ -8,3 +8,25 @@ body {
 #imgSalida {
   display: none;
 }
+.cardlog{
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  overflow: hidden;
+  border-radius: 15px;
+}
+.img1 img{
+  height: 200px;
+  border-top-right-radius: 13px;
+  border-top-left-radius: 13px;
+}
+.img2 img{
+  position: relative;
+  display: block;
+  z-index: 1;
+  margin-top: -100px;
+}
+@media only screen and (max-width: 568px){
+.logopol{
+  display: flex;
+  justify-content: center;
+}
+}

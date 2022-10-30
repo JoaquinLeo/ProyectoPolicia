@@ -14,6 +14,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>GEPBA</title>
 </head>
 <body>
@@ -43,6 +44,10 @@
           <span class="navbar-brand">
             Sistema de Gestión Electrónico Policia BA
           </span>
+          <!-- Logo policia -->
+          <div class="logopol">
+            <img src="../imagenes/Policia_bonaer_emblem.png" class="img-fluid float-end" style="max-width: 50px;">
+          </div>
         </div>
       </div>             
     </nav> 

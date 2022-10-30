@@ -29,7 +29,22 @@
     include("cabeceraA.php");
 ?>
 
-    <h3 class="display-3 text-start m-3">Bienvenido <?php echo $_SESSION['usuario'] ?></h3>
+<!-- Tarjeta de Admin -->
+<div class="container mt-2" style="max-width: 450px">
+        <div class="text-center" >
+            <div class="cardlog">
+                <div class="card">
+                    <div class="img1"><img class="card-img-top" src="../imagenes/wallpapergris.png"></div>
+                        <div class="card-body">
+                            <div class="img2 mx-auto" style="max-width: 200px;"><img class="img-fluid rounded-circle border border-2 border-dark" src="../imagenes/pngpolicia.png"></div>
+                            <div class="h1"><?php echo $_SESSION['usuario'] ?></div>
+                        </div>
+                    </div>
+                </div>      
+            </div>   
+        </div>
+    </div>
+</div> 
 
     <?php 
     /* Condición para saber si se encontró algun presente en el dia actual */

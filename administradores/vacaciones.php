@@ -253,7 +253,7 @@
         if(isset($_REQUEST['opcion']) && $_REQUEST['opcion']=="Seleccionar"){
     ?>
         <br><br>
-
+<div class="content">
         <div class="card text-bg-light mx-auto" style="max-width: 18rem;">
             <div class="card-header fs-5 fw-bold">Editar Vacaciones</div>
         <div class="card-body">
@@ -307,6 +307,7 @@
             </form>
         </div>
         </div>
+</div>
     <?php 
         }
     ?>
