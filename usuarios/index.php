@@ -120,15 +120,17 @@
     <?php 
         /* 39) Condición para saber si el usuario se encuenta en servicio */
         if($mostrar['servicio']=="si") {
-            echo "<p class='fs-5 fw-light text-start m-3'>Usted ya esta en servicio</p>";
+            echo "<p class='fs-5 fw-light text-center m-3'>Usted ya esta en servicio</p>";
             ?>    
             <!-- 40) Formulario para dejar el servicio --> 
             <form method="POST">
-                <input class="btn btn-primary m-3" type="submit" value="Dejar servicio" name="servicio">
+                <div class="d-flex justify-content-center align-items-center">
+                    <input class="btn btn-primary m-3" type="submit" value="Dejar servicio" name="servicio">
+                </div>
             </form>
         <?php }
         else {
-             echo "<p class='fs-5 fw-light text-start m-3'>Usted aun no esta en servicio</p>";
+             echo "<p class='fs-5 fw-light text-center m-3'>Usted aun no esta en servicio</p>";
         }
     ?>  
 

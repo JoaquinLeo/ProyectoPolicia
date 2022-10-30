@@ -91,7 +91,7 @@
     <?php    
         }
         else{
-           echo "<p class='fs-5 fw-light text-start m-3'>Aun no hay presentes hoy</p>";
+           echo "<p class='fs-5 fw-light text-center m-3'>Aun no hay presentes hoy</p>";
         }
     ?>
 
