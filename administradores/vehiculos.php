@@ -33,7 +33,7 @@
             $fecha = date("Y-m-d H:i:s");
             /* ---------------------------------------------------- */
 
-            /* 174) Actualización del estado del usuario en la base de datos */
+            /* 174) Actualización del estado del vehiculo en la base de datos */
             $sql2 = "UPDATE moviles SET estado='borrado' , fecha_borrado='$fecha' WHERE movil_id='$id'";
             if(mysqli_query($conexion,$sql2)) {
                 /* 175) Alerta para indicar que se borró con exito */
