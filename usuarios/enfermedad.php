@@ -6,35 +6,35 @@
     /* 21) Control del tipo de usuario */
     include("controlU.php");
 
-    /* Condición para saber si envió el formulario */
+    /* 95) Condición para saber si envió el formulario */
     if(isset($_REQUEST['enviar']))
     {   
-        /* Captura de los datos del formulario */
+        /* 96) Captura de los datos del formulario */
         $id = $_SESSION['id'];
         $nombre = $_REQUEST['usuario'];
         $legajo = $_SESSION['legajo'];
         $imagen = addslashes(file_get_contents($_FILES['certificado']['tmp_name']));
         /* ----------------------------------- */
 
-        /* Fijación de la zona horaria para trabajar con fechas */
+        /* 49) Fijación de la zona horaria para trabajar con fechas */
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $fecha = date("Y-m-d H:i:s");
         /* ---------------------------------------------------- */
 
-        /* 6) Inserción del certificado en la base de datos  */
+        /* 97) Inserción del certificado en la base de datos  */
         $sql = "INSERT INTO enfermedad(policia_id,fecha,certificado) 
         values ('$id','$fecha','$imagen')";
         mysqli_query($conexion,$sql) 
         or die("Problemas en el insert:".mysqli_error($conexion));
         /* ---------------------------------------------------- */
 
-        /* Alerta para indicar que se insertó correctamente el certificado */
+        /* 98) Alerta para indicar que se insertó correctamente el certificado */
         $var = "Se insertó correctamente el certificado";
         echo "<script> alert('".$var."');</script>";
         echo "<script>setTimeout( function() { window.location.href = 'enfermedad.php'; }, 10 ); </script>";
     }
     mysqli_close($conexion);
-    // 1) Inclusión de la cabecera (realizada en un componente aparte ya que es la misma para todo el sistema de usuarios )
+    // 38) Inclusión de la cabecera 
     include("cabeceraU.php");
 ?>
 <
@@ -43,12 +43,13 @@
             <div class="card-header">
             </div>
             <div class="card-body">
-                <!-- Formulario para enviar el certificado de enfermedad --> 
+                <!-- 99) Formulario para enviar el certificado de enfermedad --> 
                 <form method="POST" enctype="multipart/form-data">
                     <p class="fs-6 fw-semibold mb-1">Usuario:</p>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">@</span>
-                        <input type="text" name="usuario" value="<?= $_SESSION['usuario']?>" readonly class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" name="usuario" value="<?= $_SESSION['usuario']?>" readonly 
+                        class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                     <p class="fs-6 fw-semibold mb-1">Ingrese su certificado:</p>
                     <div class="input-group mb-3">
@@ -67,7 +68,7 @@
         <img class="img-fluid img-thumbnail"  height="300" width="300" id="imagenPrevisualizacion">
     <div>
 
-    <!-- Script para la previsualizacion del certificado -->    
+    <!-- 100) Script para la previsualizacion del certificado -->    
     <script>
         const $inputGroupFile02 = document.querySelector("#inputGroupFile02"),
         $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
@@ -86,6 +87,6 @@
     </script>
 
 <?php
-    // 1) Inclusión del footer (realizado en un componente aparte ya que es la misma para todo el sistema de usuarios )
+    // 41) Inclusión del footer
     include("footerU.php");
 ?>

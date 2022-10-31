@@ -1,4 +1,5 @@
 <?php
+    /* 44) Control de usuario */
     if($_SESSION['nivel_usuario'] != "noadmin"){
         $var = "Usted no tiene autorizacion";
         echo "<script> alert('".$var."');</script>";

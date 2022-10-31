@@ -6,14 +6,15 @@
     /* 21) Control del tipo de usuario */
     include("controlU.php");
 
-    /* Fijación de la zona horaria para trabajar con fechas */
+    /* 49) Fijación de la zona horaria para trabajar con fechas */
     date_default_timezone_set('America/Argentina/Buenos_Aires');
     $fecha = date("Y-m-d");
     /* ---------------------------------------------------- */
 
+    /* 101) Condición para saber si envió el formulario */
     if(isset($_REQUEST['enviar']))
     {   
-        /* Captura de los datos del formulario */
+        /* 102) Captura de los datos del formulario */
         $id = $_SESSION['id'];
         $nombre = $_REQUEST['usuario'];
         $finicio = $_REQUEST['finicio'];
@@ -21,20 +22,21 @@
         $estado = 'espera';
         /* ----------------------------------- */
 
-        /* 6) Inserción del certificado en la base de datos  */
+        /* 103) Inserción de la vacacion en la base de datos  */
         $sql = "INSERT INTO vacaciones (policia_id,fecha_inicio,fecha_fin,estado) 
         values ('$id','$finicio','$ffin','$estado')";
         mysqli_query($conexion,$sql) 
         or die("Problemas en el insert:".mysqli_error($conexion));
         /* ---------------------------------------------------- */
 
-        /* Alerta para indicar que se envió correctamente el pedido de vacaciones */
+        /* 104) Alerta para indicar que se envió correctamente el pedido de vacaciones */
         $var = "Se envió correctamente el pedido de vacaciones";
         echo "<script> alert('".$var."');</script>";
         echo "<script>setTimeout( function() { window.location.href = 'vacaciones.php'; }, 10 ); </script>";
     }
     mysqli_close($conexion);
-    // 1) Inclusión de la cabecera (realizada en un componente aparte ya que es la misma para todo el sistema de usuarios )
+
+    // 38) Inclusión de la cabecera 
     include("cabeceraU.php");
 ?>
 
@@ -43,12 +45,13 @@
             <div class="card-header">
             </div>
             <div class="card-body">
-                <!-- Formulario para enviar pedido de vacaciones --> 
+                <!-- 105) Formulario para enviar pedido de vacaciones --> 
                 <form method="POST">
                     <p class="fs-6 fw-semibold mb-1">Usuario:</p>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">@</span>
-                        <input type="text" name="usuario" value="<?= $_SESSION['usuario']?>" readonly class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" name="usuario" value="<?= $_SESSION['usuario']?>" readonly class="form-control" 
+                        placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                     <p class="fs-6 fw-semibold mb-1">Ingrese su fecha de inicio:</p>
                     <div class="input-group mb-3">
@@ -69,6 +72,6 @@
     </div>
 
 <?php
-    // 1) Inclusión del footer (realizado en un componente aparte ya que es la misma para todo el sistema de usuarios )
+    // 41) Inclusión del footer
     include("footerU.php");
 ?>

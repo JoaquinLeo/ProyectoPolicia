@@ -1,12 +1,12 @@
 <?php
-    /* Validación de una sesión */
+    /* 20) Validación de una sesión */
     include("../sesion.php");
-    /* Conexion a la base de datos */
+    /* 5) Conexion a la base de datos */
     include("../conexion.php");
-    /* Control del tipo de usuario */
+    /* 106) Control del tipo de usuario */
     include("controlA.php");
 
-    /* Funcion para calcular los dias pedidos de vacaciones */
+    /* 139) Funcion para calcular los dias pedidos de vacaciones */
     function diasPedidos($fecha1 , $fecha2){
         $segundosFecha1 = strtotime( $fecha1 );
         $segundosFecha2 = strtotime( $fecha2 );
@@ -15,12 +15,12 @@
     }
     /* ---------------------------------------------------- */
 
-    /* Fijación de la zona horaria para trabajar con fechas */
+    /* 49) Fijación de la zona horaria para trabajar con fechas */
     date_default_timezone_set('America/Argentina/Buenos_Aires');
     $fecha = date("Y-m-d");
     /* ---------------------------------------------------- */
 
-    /* Consulta a la base de datos para traer y mostrar las vacaciones pedidas */
+    /* 140) Consulta a la base de datos para traer y mostrar las vacaciones pedidas */
     $sql="SELECT vacaciones.vacaciones_id, policias.policia_id, policias.nombre, 
     policias.apellido, policias.legajo, vacaciones.fecha_inicio, 
     vacaciones.fecha_fin, vacaciones.estado, policias.dias_vacaciones
@@ -30,7 +30,7 @@
     or die("Problemas en el select:".mysqli_error($conexion));
     /* ---------------------------------------------------- */
 
-    /* Captura de los datos del formulario */  
+    /* 141) Captura de los datos del formulario */  
     $opcion = (isset($_REQUEST['opcion']))?$_REQUEST['opcion']:"";
     $vacacionesId = (isset($_REQUEST['vacaciones_id']))?$_REQUEST['vacaciones_id']:"";
     $policiaId = (isset($_REQUEST['policia_id']))?$_REQUEST['policia_id']:"";
@@ -39,59 +39,55 @@
     $estado = (isset($_REQUEST['estado']))?$_REQUEST['estado']:"";
     /* ----------------------------------- */  
 
-    /* Condición para saber que boton se presionó */
+    /* 142) Condición para saber que boton se presionó */
     switch($opcion){
 
         case "Aceptar" : 
-            /* Condición para saber si el usuario pidió menos dias de los que tiene disponibles */
+            /* 143) Condición para saber si el usuario pidió menos dias de los que tiene disponibles */
             if($dias_vacaciones > $dias_pedidos){
 
                 $diasRestantes = $dias_vacaciones - $dias_pedidos;
-                /* Actualización del estado de las vacaciones en la base de datos */
+                /* 144) Actualización del estado de las vacaciones en la base de datos */
                 $sql2 = "UPDATE vacaciones SET estado='aceptado' WHERE vacaciones_id='$vacacionesId'";
                 if(!mysqli_query($conexion,$sql2)) {
                     echo "Error".$sql2."<br/>".mysqli_error($conexion);
                 }
                 /* ----------------------------------- */  
-
-                /* Actualización de la cantidad de dias restantes de vacaciones en la base de datos */
+                /* 145) Actualización de la cantidad de dias restantes de vacaciones en la base de datos */
                 $sql3 = "UPDATE policias SET dias_vacaciones='$diasRestantes' WHERE policia_id='$policiaId'";
                 if(!mysqli_query($conexion,$sql3)) {
                     echo "Error".$sql2."<br/>".mysqli_error($conexion);
                 }
                 /* ----------------------------------- */ 
-
-                /* Alerta para indicar que las vacaciones fueron aceptas con exito */
+                /* 146) Alerta para indicar que las vacaciones fueron aceptas con exito */
                 $var = "Se han aceptado las vacaciones";
                 echo "<script> alert('".$var."');</script>";
                 echo "<script>setTimeout( function() { window.location.href = 'vacaciones.php'; }, 10 ); </script>";
             }
-
             else{
-                /* Alerta para indicar que no se pueden aceptar las vacaciones por falta de suficientes dias */
+                /* 147) Alerta para indicar que no se pueden aceptar las vacaciones por falta de suficientes dias */
                 $var = "No es posible aceptar estas vacaciones ya que se estan pidiendo mas dias de los disponibles";
                 echo "<script> alert('".$var."');</script>";
                 echo "<script>setTimeout( function() { window.location.href = 'vacaciones.php'; }, 10 ); </script>";
             }
-
             break;
 
         case "Rechazar" : 
-            /* Actualización del estado de las vacaciones en la base de datos */
-            $sql2 = "UPDATE vacaciones SET estado='rechazado' WHERE vacaciones_id='$vacacionesId'";
-            if(mysqli_query($conexion,$sql2)) {
-                /* Alerta para indicar que las vacaciones fueron rechazadas con exito */
-                $var = "Se han rechazado las vacaciones";
-                echo "<script> alert('".$var."');</script>";
-                echo "<script>setTimeout( function() { window.location.href = 'vacaciones.php'; }, 10 ); </script>";
-            }
-            else{
-                echo "Error".$sql2."<br/>".mysqli_error($conexion);
-            }
-            break;
+                /* 148) Actualización del estado de las vacaciones en la base de datos */
+                $sql2 = "UPDATE vacaciones SET estado='rechazado' WHERE vacaciones_id='$vacacionesId'";
+                if(mysqli_query($conexion,$sql2)) {
+                    /* 149) Alerta para indicar que las vacaciones fueron rechazadas con exito */
+                    $var = "Se han rechazado las vacaciones";
+                    echo "<script> alert('".$var."');</script>";
+                    echo "<script>setTimeout( function() { window.location.href = 'vacaciones.php'; }, 10 ); </script>";
+                }
+                else{
+                    echo "Error".$sql2."<br/>".mysqli_error($conexion);
+                }
+                break;
 
         case "Seleccionar" : 
-            /* Consulta a la base de datos para traer y mostrar los datos del usuario seleccionado */
+            /* 150) Consulta a la base de datos para traer y mostrar los datos del usuario seleccionado */
             $sql3 = "SELECT vacaciones.vacaciones_id, policias.policia_id, 
             policias.nombre, policias.apellido, policias.legajo, vacaciones.fecha_inicio, 
             vacaciones.fecha_fin, vacaciones.estado, policias.dias_vacaciones
@@ -101,7 +97,7 @@
             or die("Problemas en el select:".mysqli_error($conexion));
             /* ----------------------------------- */ 
 
-            /* Se almacenan los datos traidos del usuario en variables */
+            /* 151) Se almacenan los datos traidos del usuario en variables */
             $seleccion = mysqli_fetch_array($rta2);
             $nombre= $seleccion['nombre'] ; 
             $apellido= $seleccion['apellido'] ; 
@@ -115,57 +111,55 @@
             break;
 
         case "Modificar": 
-            /* Condición para saber a que estado se actualizó el pedido de vacaciones */
+            /* 152) Condición para saber a que estado se actualizó el pedido de vacaciones */
             if($estado == "rechazado"){
 
                 $diasRestantes = $dias_vacaciones + $dias_pedidos;
 
-                /* Actualización del estado de las vacaciones en la base de datos */
+                /* 153) Actualización del estado de las vacaciones en la base de datos */
                 $sql2 = "UPDATE vacaciones SET estado='rechazado' WHERE vacaciones_id='$vacacionesId'";
                 if(!mysqli_query($conexion,$sql2)) {
                     echo "Error".$sql2."<br/>".mysqli_error($conexion);
                 }
                 /* ----------------------------------- */ 
 
-                /* Actualización de la cantidad de dias restantes de vacaciones en la base de datos */
+                /* 154) Actualización de la cantidad de dias restantes de vacaciones en la base de datos */
                 $sql3 = "UPDATE policias SET dias_vacaciones='$diasRestantes' WHERE policia_id='$policiaId'";
                 if(!mysqli_query($conexion,$sql3)) {
                     echo "Error".$sql2."<br/>".mysqli_error($conexion);
                 }
                 /* ----------------------------------- */ 
 
-                /* Alerta para indicar que el cambio fue realizado con exito */
+                /* 155) Alerta para indicar que el cambio fue realizado con exito */
                 $var = "Se ha aceptado el cambio. Aceptado actualizado a Rechazado";
                 echo "<script> alert('".$var."');</script>";
                 echo "<script>setTimeout( function() { window.location.href = 'vacaciones.php'; }, 10 ); </script>"; 
             }
    
             else{
-                /* Condición para saber si el usuario pidió menos dias de los que tiene disponibles */
+                /* 156) Condición para saber si el usuario pidió menos dias de los que tiene disponibles */
                 if($dias_vacaciones > $dias_pedidos){
 
                     $diasRestantes = $dias_vacaciones - $dias_pedidos;
-                    /* Actualización del estado de las vacaciones en la base de datos */
+                    /* 157) Actualización del estado de las vacaciones en la base de datos */
                     $sql2 = "UPDATE vacaciones SET estado='aceptado' WHERE vacaciones_id='$vacacionesId'";
                     if(!mysqli_query($conexion,$sql2)) {
                         echo "Error".$sql2."<br/>".mysqli_error($conexion);
                     }
                     /* ----------------------------------- */  
-
-                    /* Actualización de la cantidad de dias restantes de vacaciones en la base de datos */
+                    /* 158) Actualización de la cantidad de dias restantes de vacaciones en la base de datos */
                     $sql3 = "UPDATE policias SET dias_vacaciones='$diasRestantes' WHERE policia_id='$policiaId'";
                     if(!mysqli_query($conexion,$sql3)) {
                         echo "Error".$sql2."<br/>".mysqli_error($conexion);
                     }
                     /* ----------------------------------- */  
-
-                    /* Alerta para indicar que el cambio fue realizado con exito */
+                    /* 159) Alerta para indicar que el cambio fue realizado con exito */
                     $var = "Se ha aceptado el cambio. Rechazado actualizado a Aceptado";
                     echo "<script> alert('".$var."');</script>";
                     echo "<script>setTimeout( function() { window.location.href = 'vacaciones.php'; }, 10 ); </script>";
                 }
                 else{
-                    /* Alerta para indicar que el cambio no se pudo realizar por falta de suficientes dias */
+                    /* 160) Alerta para indicar que el cambio no se pudo realizar por falta de suficientes dias */
                     $var = "Cambio denegado. No es posible aceptar estas vacaciones ya que se estan pidiendo mas dias de los disponibles";
                     echo "<script> alert('".$var."');</script>";
                     echo "<script>setTimeout( function() { window.location.href = 'vacaciones.php'; }, 10 ); </script>";
@@ -174,10 +168,10 @@
             break;
 
         case "Borrar" : 
-            /* Actualización del estado de la vacacion en la base de datos */
+            /* 161) Actualización del estado de la vacacion en la base de datos */
             $sql2 = "UPDATE vacaciones SET estado = 'borrado' WHERE vacaciones_id='$vacacionesId'";
             if(mysqli_query($conexion,$sql2)) {
-                /* Alerta para indicar que se borró con exito */
+                /* 162) Alerta para indicar que se borró con exito */
                 $var = "Borrado con exito";
                 echo "<script> alert('".$var."');</script>";
                 echo "<script>setTimeout( function() { window.location.href = 'vacaciones.php'; }, 10 ); </script>";
@@ -189,12 +183,12 @@
             /* -------------------------------------------------------- */
     }
     mysqli_close($conexion);
-    // 1) Inclusión de la cabecera (realizada en un componente aparte ya que es la misma para todo el sistema de administradores )
+    // 108) Inclusión de la cabecera
     include("cabeceraA.php");
 ?>
 
     <div class="container mx-auto my-4 section-content">
-        <!-- Formulario para mostrar los pedidos de vacaciones --> 
+        <!-- 163) Formulario para mostrar los pedidos de vacaciones --> 
         <table id="vacaciones" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
             <caption>Vacaciones</caption>
             <thead>
@@ -212,7 +206,7 @@
             </thead>
             <tbody>   
                 <?php
-                    /* Bucle para mostrar todas las tuplas traidas de la base de datos */
+                    /* 164) Bucle para mostrar todas las tuplas traidas de la base de datos */
                     while ($mostrar = mysqli_fetch_array($rta))
                     {
                 ?>
@@ -230,6 +224,7 @@
                         </td> 
                         <td> <?php echo $mostrar['dias_vacaciones'] ?> </td> 
                         <td>
+                            <!-- 165) Formulario para seleccionar vacaciones --> 
                             <form method="POST">
                                 <input type="hidden" name="vacaciones_id"  value="<?= $mostrar['vacaciones_id'] ?>">
                                 <input type="hidden" name="policia_id"  value="<?= $mostrar['policia_id'] ?>">
@@ -249,7 +244,7 @@
         </table>
     </div>
     <?php 
-        /* Condición para saber si envió el formulario con la opcion de seleccionar*/
+        /* 166) Condición para saber si envió el formulario con la opcion de seleccionar*/
         if(isset($_REQUEST['opcion']) && $_REQUEST['opcion']=="Seleccionar"){
     ?>
         <br><br>
@@ -257,6 +252,7 @@
         <div class="card text-bg-light mx-auto " style="max-width: 18rem;">
             <div class="card-header fs-5 fw-bold">Editar Vacaciones</div>
         <div class="card-body">
+            <!-- 167) Formulario modificar vacaciones --> 
             <form method="POST">
                 <input type="hidden" name="vacaciones_id" value="<?php echo $vacacionesId;?>">
                 <input type="hidden" name="policia_id" value="<?php echo $policiaId;?>">
@@ -312,7 +308,7 @@
         }
     ?>
 
-    <!-- Scripts para el funcionamiento dinámico de la tabla -->
+    <!-- 72) Scripts para el funcionamiento dinámico de la tabla -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
@@ -322,7 +318,7 @@
         $(document).ready(function () { 
             $('#vacaciones').DataTable({
                 "language":{
-                    /* Cambio de lenguaje al español */
+                    /* 73) Cambio de lenguaje al español */
                     "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
                     "lengthMenu": "Mostrar de a _MENU_ registros",
                 }    
@@ -331,6 +327,6 @@
     </script>
 
 <?php
-    // 1) Inclusión del footer (realizado en un componente aparte ya que es la misma para todo el sistema de administradores )
+    // 113) Inclusión del footer
     include("footerA.php");
 ?>

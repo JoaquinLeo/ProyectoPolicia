@@ -1,4 +1,4 @@
-<!-- cabecera de los usuarios -->
+<!-- 42) Cabecera de los usuarios -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +44,6 @@
           <span class="navbar-brand">
             Sistema de Gestión Electrónico Policia BA
           </span>
-          <!-- Logo policia -->
           <div class="logopol">
             <img src="../imagenes/Policia_bonaer_emblem.png" class="img-fluid float-end" style="max-width: 50px;">
           </div>

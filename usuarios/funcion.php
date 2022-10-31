@@ -4,10 +4,10 @@
     /* 21) Control del tipo de usuario */
     include("controlU.php");
 
-    /* Variable para recibir la funcion que va a llevar a cabo el usuario */
+    /* 48) Variable para recibir la funcion que va a llevar a cabo el usuario */
     $funcion = ($_REQUEST['funcion'])?$_REQUEST['funcion']:"";
 
-    /* Dependiendo la funcion del usuario , se lo envia a una página u otra */
+    /* 49) Dependiendo la funcion del usuario , se lo envia a una página u otra */
     switch($funcion){
         case "caminante" :
             header("Location:caminante.php");
@@ -22,5 +22,4 @@
             header("Location:cuatriciclos.php");
             break;
     }
-
 ?>

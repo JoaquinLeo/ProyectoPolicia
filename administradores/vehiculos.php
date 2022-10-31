@@ -1,20 +1,20 @@
 <?php
-    /* Validación de una sesión */
+    /* 20) Validación de una sesión */
     include("../sesion.php");
-    /* Conexion a la base de datos */
+    /* 5) Conexion a la base de datos */
     include("../conexion.php");
-    /* Control del tipo de usuario */
+    /* 106) Control del tipo de usuario */
     include("controlA.php");
 
-    /* Consulta a la base de datos para traer y mostrar los vehiculos */
+    /* 171) Consulta a la base de datos para traer y mostrar los vehiculos */
     $sql="SELECT movil_id , nro_serie ,tipo_movil , estado , posesion 
     FROM moviles WHERE estado <>'borrado' ";
     $rta= mysqli_query($conexion,$sql) 
     or die("Problemas en el select:".mysqli_error($conexion));
     /* -------------------------------------------------------------- */
 
-    /* Captura de los datos del formulario */  
-    $opcion =             (isset($_REQUEST['opcion']))?$_REQUEST['opcion']  :     "";
+    /* 172) Captura de los datos del formulario */  
+    $opcion = (isset($_REQUEST['opcion']))?$_REQUEST['opcion']:"";
     $id = (isset($_REQUEST['id']))?$_REQUEST['id'] : "";
 
     $posesion = (isset($_REQUEST['posesion']))?$_REQUEST['posesion']:"";
@@ -24,19 +24,19 @@
     $descripcion= (isset($_REQUEST['descripcion']))?$_REQUEST['descripcion']:"";; 
     /* -------------------------------------------------------------- */
 
-    /* Condición para saber que boton se presionó */
+    /* 173) Condición para saber que boton se presionó */
     switch($opcion){
 
         case "Borrar" : 
-            /* Fijación de la zona horaria para trabajar con fechas */
+            /* 49) Fijación de la zona horaria para trabajar con fechas */
             date_default_timezone_set('America/Argentina/Buenos_Aires');
             $fecha = date("Y-m-d H:i:s");
             /* ---------------------------------------------------- */
 
-            /* Actualización del estado del usuario en la base de datos */
+            /* 174) Actualización del estado del usuario en la base de datos */
             $sql2 = "UPDATE moviles SET estado='borrado' , fecha_borrado='$fecha' WHERE movil_id='$id'";
             if(mysqli_query($conexion,$sql2)) {
-                /* Alerta para indicar que se borró con exito */
+                /* 175) Alerta para indicar que se borró con exito */
                 $var = "Borrado con exito";
                 echo "<script> alert('".$var."');</script>";
                 echo "<script>setTimeout( function() { window.location.href = 'vehiculos.php'; }, 10 ); </script>";
@@ -48,13 +48,13 @@
             /* ---------------------------------------------------- */
 
         case "Seleccionar" : 
-            /* Consulta a la base de datos para traer y mostrar los datos del vehiculo seleccionado */
+            /* 176) Consulta a la base de datos para traer y mostrar los datos del vehiculo seleccionado */
             $sql3 = "SELECT * FROM moviles WHERE movil_id='$id'";
             $rta2 = mysqli_query($conexion,$sql3) or
             die("Problemas en el select:".mysqli_error($conexion));
             /* ----------------------------------- */ 
 
-            /* Se almacenan los datos traidos del usuario en variables */
+            /* 177) Se almacenan los datos traidos del usuario en variables */
             $seleccion = mysqli_fetch_array($rta2);
             $posesion= $seleccion['posesion'] ; 
             $tipo_movil= $seleccion['tipo_movil'] ; 
@@ -65,11 +65,11 @@
             break;
 
         case "Modificar" : 
-            /* Actualización de las modificaciones del vehiculo en la base de datos */
+            /* 178) Actualización de las modificaciones del vehiculo en la base de datos */
             $sql2 = "UPDATE moviles SET posesion='$posesion', tipo_movil='$tipo_movil', estado='$estado',
             nro_serie='$nro_serie' , descripcion='$descripcion' WHERE movil_id='$id'";
             if(mysqli_query($conexion,$sql2)) {
-                /* Alerta para indicar que el cambio fue realizado con exito */
+                /* 179) Alerta para indicar que el cambio fue realizado con exito */
                 $var = "Modificación realizada con exito";
                 echo "<script> alert('".$var."');</script>";
                 echo "<script>setTimeout( function() { window.location.href = 'vehiculos.php'; }, 10 ); </script>";
@@ -81,11 +81,11 @@
             /* ----------------------------------- */ 
 
         case "Agregar" : 
-            /* 6) Inserción del nuevo vehiculo en la base de datos  */
+            /* 180) Inserción del nuevo vehiculo en la base de datos  */
             $sql2 = "INSERT INTO moviles(nro_serie, tipo_movil, estado, posesion) 
             values ('$nro_serie','$tipo_movil','$estado','$posesion')";
             if(mysqli_query($conexion,$sql2)) {
-                /* Alerta para indicar que se agregó con exito */
+                /* 181) Alerta para indicar que se agregó con exito */
                 $var = "Vehiculo agregado con exito";
                 echo "<script> alert('".$var."');</script>";
                 echo "<script>setTimeout( function() { window.location.href = 'vehiculos.php'; }, 10 ); </script>";
@@ -97,11 +97,12 @@
             /* ----------------------------------- */ 
     }
     mysqli_close($conexion);
-    // 1) Inclusión de la cabecera (realizada en un componente aparte ya que es la misma para todo el sistema de administradores )
+    // 108) Inclusión de la cabecera     
     include("cabeceraA.php");
 ?>
 
     <div class="container mx-auto my-4 section-content">
+        <!-- 182) Tabla para mostrar los vehiculos  -->   
         <table id="vehiculos" class="table table-striped dt-responsive nowrap border border-dark" style="width:100%">
             <caption>Moviles</caption>
             <thead>
@@ -117,7 +118,7 @@
             <tbody>
             <?php
                 $numero=1;
-                /* Bucle para mostrar todas las tuplas traidas de la base de datos */
+                /* 183) Bucle para mostrar todas las tuplas traidas de la base de datos */
                 while ($mostrar = mysqli_fetch_array($rta))
                 {
             ?>
@@ -137,6 +138,7 @@
                         ?> 
                     </td> 
                     <td>
+                        <!-- 184) Formulario para seleccionar los vehiculos  -->   
                         <form method="POST">
                             <input type="hidden" name="id"  value="<?= $mostrar['movil_id'] ?>">
                             <input class="btn btn-secondary btn-sm" type="submit" name="opcion" value="Seleccionar">
@@ -158,10 +160,12 @@
                 <div class="card text-bg-light" style="max-width: 18rem;">
                     <div class="card-header fs-5 fw-bold">Modificar vehiculos</div>
                     <div class="card-body">
+                        <!-- 185) Formulario para modificar vehiculos  -->   
                         <form method="POST">
                             <input type="hidden" name="id" value="<?php echo $id;?>">
                             <p class="fs-6 fw-semibold me-1 mb-1">Numero de Serie actual:</p>
-                            <input class="form-control mb-4" id="floatingPassword" type="text" name="nro_serie" value="<?php echo $nro_serie;?>" placeholder="nro_serie">
+                            <input class="form-control mb-4" id="floatingPassword" type="text" name="nro_serie" 
+                            value="<?php echo $nro_serie;?>" placeholder="nro_serie">
                             <div class="d-flex">
                             <p class="fs-6 fw-semibold me-1 mb-1">Estado actual:<P> <?php echo $estado;?>
                             </div>
@@ -200,6 +204,7 @@
             <div class="card text-bg-light" style="max-width: 18rem;">
                 <div class="card-header fs-5 fw-bold">Agregar vehiculos</div>
                     <div class="card-body">
+                        <!-- 186) Formulario para agregar los vehiculos  -->
                         <form method="POST">
                             <p class="fs-6 fw-semibold me-1 mb-1">Numero de Serie:</p>
                             <input class="form-control mb-4" id="floatingPassword" type="text" name="nro_serie" placeholder="nro_serie" required>
@@ -229,7 +234,7 @@
         </div>
     </div>
     
-    <!-- Scripts para el funcionamiento dinámico de la tabla -->
+    <!-- 72) Scripts para el funcionamiento dinámico de la tabla -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
@@ -239,7 +244,7 @@
         $(document).ready(function () { 
             $('#vehiculos').DataTable({
                 "language":{
-                    /* Cambio de lenguaje al español */
+                    /* 73) Cambio de lenguaje al español */
                     "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
                     "lengthMenu": "Mostrar de a _MENU_ registros",
                 }
@@ -248,6 +253,6 @@
     </script>
 
 <?php
-    // 1) Inclusión del footer (realizado en un componente aparte ya que es la misma para todo el sistema de administradores )
+    // 113) Inclusión del footer
     include("footerA.php");
 ?>

@@ -100,22 +100,22 @@
     include("cabeceraU.php");
 ?>
 
-<!-- Tarjeta de usuario -->
-<div class="container mt-4 section-content" style="max-width: 450px">
-        <div class="text-center" >
-            <div class="cardlog">
-                <div class="card">
-                    <div class="img1"><img class="card-img-top img-fluid" src="../imagenes/wallpapergris.png"></div>
-                        <div class="card-body">
-                            <div class="img2 mx-auto" style="max-width: 200px;"><img class="img-fluid rounded-circle border border-2 border-dark" src="../imagenes/pngpolicia.png"></div>
-                            <div class="h1"><?php echo $_SESSION['usuario'] ?></div>
+
+    <div class="container mt-4 section-content" style="max-width: 450px">
+            <div class="text-center" >
+                <div class="cardlog">
+                    <div class="card">
+                        <div class="img1"><img class="card-img-top img-fluid" src="../imagenes/wallpapergris.png"></div>
+                            <div class="card-body">
+                                <div class="img2 mx-auto" style="max-width: 200px;"><img class="img-fluid rounded-circle border border-2 border-dark" src="../imagenes/pngpolicia.png"></div>
+                                <div class="h1"><?php echo $_SESSION['usuario'] ?></div>
+                            </div>
                         </div>
-                    </div>
-                </div>      
-            </div>   
+                    </div>      
+                </div>   
+            </div>
         </div>
-    </div>
-</div> 
+    </div> 
 
     <?php 
         /* 39) Condición para saber si el usuario se encuenta en servicio */
