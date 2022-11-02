@@ -135,7 +135,7 @@
                                     /* 70) Movil solo ocupado por el chofer */
                                     else if($mostrar['posesion']==1){
                                 ?>
-                                <select name="funcion">
+                                <select class="form-select w-75" name="funcion">
                                     <option value="acompañante">Acompañante</option>
                                 </select> 
                                 <?php
@@ -143,7 +143,7 @@
                                     /* 71) Movil solo ocupado por el acompañante */
                                     else if($mostrar['posesion']==2){
                                 ?>
-                                <select name="funcion">
+                                <select class="form-select w-75" name="funcion">
                                     <option value="chofer">Chofer</option>
                                 </select> 
                                 <?php

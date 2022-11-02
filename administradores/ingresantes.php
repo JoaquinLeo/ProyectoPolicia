@@ -193,8 +193,8 @@
             <input class="form-control mb-4" id="floatingPassword"  
             type="text" name="legajo" value="<?php echo $legajo;?>" placeholder="legajo">
             <?php if($_SESSION["nivel_usuario"]== "superadm"){?>
-            Nivel de usuario:
-            <select name="nivel_usuario">
+            <p class="fs-6 fw-semibold mb-1">Nivel de usuario:</p>
+            <select class ="form-select" name="nivel_usuario">
                 <option value="noadmin">noadmin</option>
                 <option value="admin">admin</option>
             </select><br>
