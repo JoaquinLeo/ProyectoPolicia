@@ -28,7 +28,7 @@
     <main class="form-signin w-100 m-auto">
         <!-- 8) Formulario para registrarse en el sistema -->
         <form method="POST">
-            <h1 class="h3 mb-3 fw-normal">Sistema de Gestión Electrónico Policia BA</h1>
+            <h1 class="h3 mb-3 fw-normal">Sistema de Gestión Electrónica Policia BA</h1>
             <div class="form-floating">
                 <input type="text" name="nombre" class="form-control" id="floatingInput" placeholder="Nombre" required>
                 <label for="floatingInput">Nombre</label>

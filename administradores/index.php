@@ -26,14 +26,27 @@
     or die("Problemas en el select".mysqli_error($conexion));
     $rta2 = mysqli_query($conexion,$sql)
     or die("Problemas en el select".mysqli_error($conexion));
+    $rta3 = mysqli_query($conexion,$sql)
+    or die("Problemas en el select".mysqli_error($conexion));
     /* ---------------------------------------------------------------------------- */
     mysqli_close($conexion);
 
     // 108) Inclusión de la cabecera 
     include("cabeceraA.php");
 ?>
-
-<div class="container mt-2 section-content" style="max-width: 450px">
+    <?php
+        if(mysqli_fetch_row($rta)){
+    ?>
+    <div class="container mt-2 " style="max-width: 450px">
+    <?php
+        }
+        else{
+    ?>
+    <div class="container mt-2 section-content" style="max-width: 450px">
+    <?php
+            
+        }
+    ?>
         <div class="text-center" >
             <div class="cardlog">
                 <div class="card">

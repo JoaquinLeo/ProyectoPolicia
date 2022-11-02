@@ -6,7 +6,7 @@
         <main class="form-signin w-100 m-auto">
             <!--  2) Formulario para validad si el usuario esta intentando ingresar al sistema o se esta registrando     -->
             <form action="validar.php" method="POST">
-                <h1 class="h3 mb-3 fw-normal">Sistema de Gestión Electrónico Policia BA</h1>
+                <h1 class="h3 mb-3 fw-normal">Sistema de Gestión Electrónica Policia BA</h1>
                 <div class="form-floating">
                     <input type="text" class="form-control" id="floatingInput" name="usuario" placeholder="Usuario" required>
                     <label for="floatingInput">Usuario</label>

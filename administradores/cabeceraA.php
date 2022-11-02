@@ -51,7 +51,7 @@
                     </li>
                 </ul>
                 <span class="navbar-brand">
-                    Sistema de Gestión Electrónico Policia BA 
+                    Sistema de Gestión Electrónica Policia BA 
                  </span>
                  <div class="logopol">
                  <img src="../imagenes/Policia_bonaer_emblem.png" class="img-fluid float-end" style="max-width: 50px;">

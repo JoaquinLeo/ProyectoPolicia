@@ -29,7 +29,7 @@
         /* ---------------------------------------------------- */
 
         /* 98) Alerta para indicar que se insertó correctamente el certificado */
-        $var = "Se insertó correctamente el certificado";
+        $var = "Se envió correctamente el certificado";
         echo "<script> alert('".$var."');</script>";
         echo "<script>setTimeout( function() { window.location.href = 'enfermedad.php'; }, 10 ); </script>";
     }
