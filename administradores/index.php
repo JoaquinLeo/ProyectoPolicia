@@ -9,6 +9,7 @@
     /* 49) Fijación de la zona horaria para trabajar con fechas */
     date_default_timezone_set('America/Argentina/Buenos_Aires');
     $fecha = date("Y-m-d");
+
     /* ---------------------------------------------------- */
 
     /* 107) Consulta a la base de datos para traer y mostrar los presentes del dia actual */
@@ -22,6 +23,8 @@
     WHERE date(presentismo.fecha)='$fecha'
     ORDER BY presentismo.fecha ASC"; 
     $rta= mysqli_query($conexion,$sql)
+    or die("Problemas en el select".mysqli_error($conexion));
+    $rta2 = mysqli_query($conexion,$sql)
     or die("Problemas en el select".mysqli_error($conexion));
     /* ---------------------------------------------------------------------------- */
     mysqli_close($conexion);
@@ -49,6 +52,7 @@
     <?php 
     /* 109) Condición para saber si se encontró algun presente en el dia actual */
     if(mysqli_fetch_row($rta)){
+        
     ?>
     <div class="container mx-auto my-4">
         <!-- 110) Tabla para mostrar los presentes del dia actual --> 
@@ -69,7 +73,7 @@
             <tbody>
                 <?php
                     /* 111) Bucle para mostrar todas las tuplas traidas de la base de datos */
-                    while ($mostrar = mysqli_fetch_array($rta))
+                    while ($mostrar = mysqli_fetch_array($rta2))
                     {
                 ?>
                     <tr>
