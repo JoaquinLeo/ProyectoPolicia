@@ -66,7 +66,7 @@
     include("cabeceraU.php");
 ?>
 
-    <div class="container mx-auto my-4">
+    <div class="container mx-auto my-4 section-content">
         <!-- 92) Tabla para mostrar los cuatriciclos --> 
         <table id="cuatriciclos" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
             <caption>Cuatriciclos Policiales</caption>

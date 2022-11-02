@@ -65,7 +65,7 @@
     include("cabeceraU.php");   
 ?>
 
-    <div class="container mx-auto my-4">
+    <div class="container mx-auto my-4 section-content">
         <!-- 82) Tabla para mostrar las bicicletas --> 
         <table id="bicicletas" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
             <caption>Bicicletas Policiales</caption>

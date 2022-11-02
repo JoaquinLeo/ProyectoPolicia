@@ -93,7 +93,7 @@
     include("cabeceraU.php");
 ?>
 
-    <div class="container mx-auto my-4">
+    <div class="container mx-auto my-4 section-content">
         <!-- 66) Tabla para mostrar los moviles -->   
         <table id="moviles" class="table table-striped dt-responsive nowrap border border-dark " style="width:100%">
             <caption>Moviles Policiales</caption>
